@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: gateway
+  profiles:
+    # 环境配置
+    active: @profileActive@
+  cloud:
+    nacos:
+      username: @nacos-username@
+      password: @nacos-password@
+      discovery:
+        # 服务注册地址
+        server-addr: @nacos-discovery-addr@
+        # 注册命名空间
+        namespace: @nacos-discovery-namespace@
+        # 分组
+        group: @nacos-discovery-group@
+      config:
+        # 配置中心地址
+        server-addr: @nacos-config-addr@
+        # 注册命名空间
+        namespace: @nacos-config-namespace@
+        # 分组
+        group: @nacos-config-group@
+        # 配置文件格式
+        file-extension: @nacos-config-file-extension@
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
