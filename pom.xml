@@ -87,8 +87,11 @@
         <druid.version>1.2.6</druid.version>
         <dynamic-ds.version>3.4.1</dynamic-ds.version>
 
+        <poi.version>4.1.2</poi.version>
+
         <commons-pool.version>2.10.0</commons-pool.version>
         <commons-io.version>2.11.0</commons-io.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <commons-collections.version>3.2.2</commons-collections.version>
 
@@ -97,6 +100,7 @@
         <lombok.version>1.18.10</lombok.version>
         <lock4j.version>2.2.1</lock4j.version>
         <hutool.version>5.7.11</hutool.version>
+        <thumbnailator.version>0.4.14</thumbnailator.version>
     </properties>
 
     <dependencyManagement>
@@ -166,11 +170,25 @@
                 <scope>test</scope>
             </dependency>
 
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
             <!-- 公共资源池 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${commons-pool.version}</version>
+            </dependency>
+
+            <!-- Apache Bean Utils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
             </dependency>
 
             <!-- io常用工具类 -->
@@ -243,6 +261,12 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
+            </dependency>
+
             <!-- 核心组件依赖 -->
             <dependency>
                 <groupId>com.cddx</groupId>
@@ -254,6 +278,20 @@
             <dependency>
                 <groupId>com.cddx</groupId>
                 <artifactId>common-redis</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
+            <!-- 数据源组件引入 -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>common-datasource</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
+            <!-- 基础模型组件引入 -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>model-base</artifactId>
                 <version>${this-project.version}</version>
             </dependency>
 

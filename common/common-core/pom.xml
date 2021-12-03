@@ -70,6 +70,18 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
+        <!-- poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+        </dependency>
+
+        <!-- Apache Commons Bean Utils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+
         <!-- Apache Lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -94,9 +106,27 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
+        <!-- Hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+        </dependency>
+
+        <!-- model base -->
+        <dependency>
+            <groupId>com.cddx</groupId>
+            <artifactId>model-base</artifactId>
         </dependency>
     </dependencies>
 </project>
