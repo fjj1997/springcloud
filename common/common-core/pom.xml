@@ -88,6 +88,12 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
+        <!-- Apache Http Components -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
         <!-- Commons Io -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -118,6 +124,7 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!-- Google 图片处理工具 -->
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>

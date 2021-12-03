@@ -1,0 +1,6 @@
+#Minio配置
+minio:
+  point: https://media.b8bb.cn
+  accessKey: minio
+  secretKey: cczx@DEV@minio
+  bucketName: dev

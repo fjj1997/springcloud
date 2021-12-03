@@ -94,12 +94,14 @@
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-httpclient.version>4.5.13</commons-httpclient.version>
 
         <pagehelper.boot.version>1.3.1</pagehelper.boot.version>
         <junit.version>4.12</junit.version>
         <lombok.version>1.18.10</lombok.version>
         <lock4j.version>2.2.1</lock4j.version>
         <hutool.version>5.7.11</hutool.version>
+        <minio.version>8.0.0</minio.version>
         <thumbnailator.version>0.4.14</thumbnailator.version>
     </properties>
 
@@ -175,6 +177,13 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+
+            <!-- Apache Http Components -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${commons-httpclient.version}</version>
             </dependency>
 
             <!-- 公共资源池 -->
@@ -261,6 +270,7 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!-- Google 图片处理工具 -->
             <dependency>
                 <groupId>net.coobird</groupId>
                 <artifactId>thumbnailator</artifactId>

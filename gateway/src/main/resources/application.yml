@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        # 认证中心
+        - id: file
+          uri: lb://file
+          predicates:
+            - Path=/file/**
+          filters:
+            - StripPrefix=1

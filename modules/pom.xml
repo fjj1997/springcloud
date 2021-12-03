@@ -8,8 +8,13 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <description>业务模块</description>
+
+    <modules>
+        <module>file</module>
+    </modules>
+
     <artifactId>modules</artifactId>
     <packaging>pom</packaging>
-    <description>业务模块</description>
 
 </project>
