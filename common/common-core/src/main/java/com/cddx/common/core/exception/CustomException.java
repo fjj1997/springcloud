@@ -1,6 +1,6 @@
 package com.cddx.common.core.exception;
 
-import com.cddx.common.core.enums.ResponseEnum;
+import com.cddx.common.core.enums.ResultEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -35,12 +35,12 @@ public class CustomException extends RuntimeException {
     /**
      * 业务异常
      *
-     * @param responseEnum 异常状态编码
+     * @param resultEnum 异常状态编码
      */
-    public CustomException(ResponseEnum responseEnum) {
-        super(responseEnum.getMsg());
-        this.code = responseEnum.getCode();
-        this.message = responseEnum.getMsg();
+    public CustomException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg());
+        this.code = resultEnum.getCode();
+        this.message = resultEnum.getMsg();
     }
 
 }

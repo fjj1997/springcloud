@@ -5,7 +5,7 @@ package com.cddx.common.core.enums;
  *
  * @author 范劲松
  */
-public enum ResponseEnum {
+public enum ResultEnum {
 
     /**
      * 枚举状态对应码
@@ -62,7 +62,7 @@ public enum ResponseEnum {
     /** 响应信息内容 */
     private final String msg;
 
-    ResponseEnum(Integer code, String msg){
+    ResultEnum(Integer code, String msg){
         this.code = code;
         this.msg = msg;
     }

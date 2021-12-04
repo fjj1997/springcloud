@@ -1,6 +1,6 @@
 package com.cddx.common.core.constant;
 
-import com.cddx.common.core.enums.ResponseEnum;
+import com.cddx.common.core.enums.ResultEnum;
 
 /**
  * 通用常量信息
@@ -40,12 +40,12 @@ public class Constants {
     /**
      * 成功标记
      */
-    public static final Integer SUCCESS = ResponseEnum.SUCCESS_CODE.getCode();
+    public static final Integer SUCCESS = ResultEnum.SUCCESS_CODE.getCode();
 
     /**
      * 失败标记
      */
-    public static final Integer FAIL = ResponseEnum.SERVICE_ERROR.getCode();
+    public static final Integer FAIL = ResultEnum.SERVICE_ERROR.getCode();
 
     /**
      * 登录成功

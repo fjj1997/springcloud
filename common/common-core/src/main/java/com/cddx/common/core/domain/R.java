@@ -1,6 +1,6 @@
 package com.cddx.common.core.domain;
 
-import com.cddx.common.core.enums.ResponseEnum;
+import com.cddx.common.core.enums.ResultEnum;
 
 import java.io.Serializable;
 
@@ -15,12 +15,12 @@ public class R<T> implements Serializable {
     /**
      * 成功
      */
-    public static final ResponseEnum SUCCESS = ResponseEnum.SUCCESS_CODE;
+    public static final ResultEnum SUCCESS = ResultEnum.SUCCESS_CODE;
 
     /**
      * 失败
      */
-    public static final ResponseEnum FAIL = ResponseEnum.SERVICE_ERROR;
+    public static final ResultEnum FAIL = ResultEnum.SERVICE_ERROR;
 
     private int code;
 

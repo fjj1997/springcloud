@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cddx</groupId>
-    <artifactId>cdbase</artifactId>
+    <artifactId>springcloud</artifactId>
     <packaging>pom</packaging>
 
     <version>1.0</version>
@@ -18,11 +18,11 @@
 
                 <nacos-username>nacos</nacos-username>
                 <nacos-password>nacos</nacos-password>
-                <nacos-discovery-addr>127.0.0.1:8848</nacos-discovery-addr>
-                <nacos-discovery-namespace>fbec1d6a-714a-4909-99e0-87692975a109</nacos-discovery-namespace>
+                <nacos-discovery-addr>127.0.0.1:8849</nacos-discovery-addr>
+                <nacos-discovery-namespace>bee031af-8026-4f09-a385-4c2d19d42bff</nacos-discovery-namespace>
                 <nacos-discovery-group>DEFAULT_GROUP</nacos-discovery-group>
-                <nacos-config-addr>127.0.0.1:8848</nacos-config-addr>
-                <nacos-config-namespace>fbec1d6a-714a-4909-99e0-87692975a109</nacos-config-namespace>
+                <nacos-config-addr>127.0.0.1:8849</nacos-config-addr>
+                <nacos-config-namespace>bee031af-8026-4f09-a385-4c2d19d42bff</nacos-config-namespace>
                 <nacos-config-group>DEFAULT_GROUP</nacos-config-group>
                 <nacos-config-file-extension>yml</nacos-config-file-extension>
 

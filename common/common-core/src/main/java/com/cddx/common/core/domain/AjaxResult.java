@@ -1,6 +1,6 @@
 package com.cddx.common.core.domain;
 
-import com.cddx.common.core.enums.ResponseEnum;
+import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.utils.StringUtils;
 
 import java.util.HashMap;
@@ -109,7 +109,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static AjaxResult success(String msg, Object data) {
-        return new AjaxResult(ResponseEnum.SUCCESS_CODE.getCode(), msg, data);
+        return new AjaxResult(ResultEnum.SUCCESS_CODE.getCode(), msg, data);
     }
 
     /**
@@ -118,7 +118,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 警告消息
      */
     public static AjaxResult error() {
-        return AjaxResult.error(ResponseEnum.BUSINESS_ERROR);
+        return AjaxResult.error(ResultEnum.BUSINESS_ERROR);
     }
 
     /**
@@ -127,7 +127,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param response 状态枚举
      * @return 警告消息
      */
-    public static AjaxResult error(ResponseEnum response) {
+    public static AjaxResult error(ResultEnum response) {
         return new AjaxResult(response.getCode(), response.getMsg(), null);
     }
 
@@ -138,7 +138,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param data 数据对象
      * @return 警告消息
      */
-    public static AjaxResult error(ResponseEnum response, Object data) {
+    public static AjaxResult error(ResultEnum response, Object data) {
         return new AjaxResult(response.getCode(), response.getMsg(), data);
     }
 }

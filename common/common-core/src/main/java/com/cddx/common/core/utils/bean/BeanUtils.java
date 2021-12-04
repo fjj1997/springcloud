@@ -1,6 +1,6 @@
 package com.cddx.common.core.utils.bean;
 
-import com.cddx.common.core.enums.ResponseEnum;
+import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.utils.ErrorUtil;
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -71,7 +71,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    ErrorUtil.message(ResponseEnum.DATA_ERROR);
+                    ErrorUtil.message(ResultEnum.DATA_ERROR);
                 }
 
             }
