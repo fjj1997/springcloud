@@ -62,7 +62,7 @@ services:
     restart: on-failure
     privileged: true
     volumes:
-      - D:\VirtualMachine\Nacos\node-1:/home/nacos/logs
+      - D:\VirtualMachine\Nacos\node-2:/home/nacos/logs
       # 2.x开启
 #      - D:\VirtualMachine\Nacos\init.d\custom.properties:/home/nacos/init.d/custom.properties
     environment:
