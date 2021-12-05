@@ -3,7 +3,6 @@ package com.cddx.file;
 import com.cddx.common.core.annotation.EnableCustomConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 文件服务
@@ -11,7 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author 范劲松
  */
 @EnableCustomConfig
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class FileApplication {
 
     public static void main(String[] args) {

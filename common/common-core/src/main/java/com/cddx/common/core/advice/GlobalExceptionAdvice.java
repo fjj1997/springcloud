@@ -1,6 +1,6 @@
 package com.cddx.common.core.advice;
 
-import com.cddx.common.core.domain.AjaxResult;
+import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.core.enums.ResultEnum;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.converter.HttpMessageNotReadableException;

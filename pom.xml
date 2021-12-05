@@ -311,7 +311,7 @@
     <modules>
         <module>gateway</module>
         <module>common</module>
-        <module>modules</module>
+        <module>server</module>
         <module>models</module>
     </modules>
 

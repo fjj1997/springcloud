@@ -1,9 +1,7 @@
 package com.cddx.file.controller;
 
-import com.cddx.common.core.domain.AjaxResult;
-import com.cddx.common.core.domain.R;
+import com.cddx.common.core.web.response.R;
 import com.cddx.common.core.utils.file.FileUtils;
-import com.cddx.file.config.MinioConfig;
 import com.cddx.file.service.IFileService;
 import com.cddx.model.base.file.File;
 import lombok.extern.log4j.Log4j2;

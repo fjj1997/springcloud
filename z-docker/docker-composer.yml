@@ -24,7 +24,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
 
-  docker-nacos-server:
+  nacos-server-master:
     container_name: nacos-server-master
     image: nacos/nacos-server:1.4.2
     ports:
@@ -78,6 +78,93 @@ services:
       JVM_XMS: 256m
       JVM_XMX: 256m
       JVM_XMN: 256m
+
+  redis-node-1:
+    container_name: redis-node-1
+    image: redis:6.2.6
+    ports:
+      - '6379:6379'
+      - '16379:16379'
+    volumes:
+      - D:\VirtualMachine\Redis\node-1\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-1\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+  redis-node-2:
+    container_name: redis-node-2
+    image: redis:6.2.6
+    ports:
+      - '6380:6380'
+      - '16380:16380'
+    volumes:
+      - D:\VirtualMachine\Redis\node-2\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-2\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+  redis-node-3:
+    container_name: redis-node-3
+    image: redis:6.2.6
+    ports:
+      - '6381:6381'
+      - '16381:16381'
+    volumes:
+      - D:\VirtualMachine\Redis\node-3\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-3\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+  redis-node-4:
+    container_name: redis-node-4
+    image: redis:6.2.6
+    ports:
+      - '6382:6382'
+      - '16382:16382'
+    volumes:
+      - D:\VirtualMachine\Redis\node-4\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-4\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+  redis-node-5:
+    container_name: redis-node-5
+    image: redis:6.2.6
+    ports:
+      - '6383:6383'
+      - '16383:16383'
+    volumes:
+      - D:\VirtualMachine\Redis\node-5\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-5\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+  redis-node-6:
+    container_name: redis-node-6
+    image: redis:6.2.6
+    ports:
+      - '6384:6384'
+      - '16384:16384'
+    volumes:
+      - D:\VirtualMachine\Redis\node-6\config\redis.conf:/home/redis/redis.conf
+      - D:\VirtualMachine\Redis\node-6\data:/data
+    command: [
+        'redis-server', '/home/redis/redis.conf'
+    ]
+    environment:
+      - REDISCLI_AUTH=123456
+
+
 
 networks:
   cloud_net:

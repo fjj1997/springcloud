@@ -1,4 +1,4 @@
-package com.cddx.common.core.domain;
+package com.cddx.common.core.web.response;
 
 import com.cddx.common.core.enums.ResultEnum;
 

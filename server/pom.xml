@@ -12,9 +12,10 @@
 
     <modules>
         <module>file</module>
+        <module>system</module>
     </modules>
 
-    <artifactId>modules</artifactId>
+    <artifactId>server</artifactId>
     <packaging>pom</packaging>
 
 </project>
