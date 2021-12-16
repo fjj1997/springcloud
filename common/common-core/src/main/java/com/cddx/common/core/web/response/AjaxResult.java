@@ -141,4 +141,15 @@ public class AjaxResult extends HashMap<String, Object> {
     public static AjaxResult error(ResultEnum response, Object data) {
         return new AjaxResult(response.getCode(), response.getMsg(), data);
     }
+
+    /**
+     * 返回错误消息
+     *
+     * @param code 状态枚举
+     * @param msg 错误消息
+     * @return 警告消息
+     */
+    public static AjaxResult error(int code, String msg) {
+        return new AjaxResult(code, msg, null);
+    }
 }

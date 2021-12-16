@@ -1,14 +1,13 @@
 package com.cddx.common.core.advice;
 
-import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.core.enums.ResultEnum;
+import com.cddx.common.core.exception.CustomException;
+import com.cddx.common.core.web.response.AjaxResult;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
@@ -25,22 +24,34 @@ public class GlobalExceptionAdvice {
      */
     private static final Integer TEN = 10;
 
-    @ExceptionHandler(value = Exception.class)
-    public AjaxResult defaultError(Exception ex, HttpServletResponse response) throws Exception {
-        this.throwing(ex);
-        if (ex instanceof HttpRequestMethodNotSupportedException) {
-            response.setStatus(400);
-            return AjaxResult.error(ResultEnum.SERVICE_ERROR);
-        } else if (ex instanceof HttpMessageNotReadableException) {
-            response.setStatus(400);
-            return AjaxResult.error(ResultEnum.SERVICE_ERROR);
-        } /*else if (ex instanceof NoHandlerFoundException) {
-            response.setStatus(404);
-            return AjaxResult.error(ResultEnum.SERVICE_ERROR);
-        } */else {
-            response.setStatus(500);
-            return AjaxResult.error(ResultEnum.SERVICE_ERROR);
-        }
+    /**
+     * 拦截未知的运行时异常
+     */
+    @ExceptionHandler(CustomException.class)
+    public AjaxResult handleCustomExceptionn(CustomException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生未知异常.", requestURI, e);
+        return AjaxResult.error(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * 拦截未知的运行时异常
+     */
+    @ExceptionHandler(RuntimeException.class)
+    public AjaxResult handleRuntimeException(RuntimeException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生未知异常.", requestURI, e);
+        return AjaxResult.error(ResultEnum.UNKNOWN_ERROR);
+    }
+
+    /**
+     * 系统异常
+     */
+    @ExceptionHandler(Exception.class)
+    public AjaxResult handleException(Exception e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生系统异常.", requestURI, e);
+        return AjaxResult.error(ResultEnum.UNKNOWN_ERROR);
     }
 
     private void throwing(Exception ex) {

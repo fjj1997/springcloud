@@ -1,11 +1,12 @@
+# Tomcat
 server:
-  port: 8080
+  port: 9100
 
 # Spring
-spring:
+spring: 
   application:
     # 应用名称
-    name: gateway
+    name: monitor
   profiles:
     # 环境配置
     active: @profileActive@
@@ -32,19 +33,3 @@ spring:
         # 共享配置
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-
-    sentinel:
-      # 取消控制台懒加载
-      eager: true
-      transport:
-        # 控制台地址
-        dashboard: localhost:8719
-      # nacos配置持久化
-      datasource:
-        ds1:
-          nacos:
-            server-addr: @nacos-config-addr@
-            dataId: sentinel-gateway
-            groupId: @nacos-config-group@
-            data-type: json
-            rule-type: flow

@@ -13,6 +13,12 @@ spring:
             - Path=/sys/**
           filters:
             - StripPrefix=1
+            # 降级配置
+#            - name: Hystrix
+#              args:
+#                name: default
+#                # 降级接口的地址
+#                fallbackUri: 'forward:/fallback'
         # 文件服务
         - id: file
           uri: lb://file

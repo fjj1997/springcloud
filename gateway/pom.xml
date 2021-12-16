@@ -49,10 +49,16 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
-        <!-- 公共核心引入 -->
+        <!-- SpringCloud Netflix Hystrix -->
         <dependency>
-            <groupId>com.cddx</groupId>
-            <artifactId>common-core</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
+        <!--验证码 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
         </dependency>
 
         <!-- 缓存组件引入 -->
@@ -68,6 +74,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
                 <executions>
                     <execution>
                         <goals>

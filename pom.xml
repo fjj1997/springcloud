@@ -72,11 +72,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring-boot.version>2.5.3</spring-boot.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-boot.version>2.5.7</spring-boot.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spring-cloud-hystrix.version>2.2.10.RELEASE</spring-cloud-hystrix.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <spring-test.version>2.5.3</spring-test.version>
-        <spring-boot-jpa.version>2.5.4</spring-boot-jpa.version>
+        <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
         <spring-boot-test.version>2.1.12.RELEASE</spring-boot-test.version>
 
         <spring-boot.mybatis>2.2.0</spring-boot.mybatis>
@@ -102,6 +102,7 @@
         <lock4j.version>2.2.1</lock4j.version>
         <hutool.version>5.7.11</hutool.version>
         <minio.version>8.0.0</minio.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
         <thumbnailator.version>0.4.14</thumbnailator.version>
     </properties>
 
@@ -115,6 +116,13 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- SpringCloud Netflix Hystrix -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring-cloud-hystrix.version}</version>
             </dependency>
 
             <!-- SpringCloud Alibaba 微服务 -->
@@ -146,14 +154,14 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-boot-jpa.version}</version>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <!-- Spring Test -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${spring-test.version}</version>
+                <version>${spring-boot.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -270,6 +278,13 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!-- 验证码 -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
             <!-- Google 图片处理工具 -->
             <dependency>
                 <groupId>net.coobird</groupId>
@@ -311,8 +326,9 @@
     <modules>
         <module>gateway</module>
         <module>common</module>
-        <module>server</module>
         <module>models</module>
+        <module>server</module>
+        <module>visual</module>
     </modules>
 
     <dependencies>
