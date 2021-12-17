@@ -1,6 +1,6 @@
 package com.cddx.system.mapper;
 
-import com.cddx.domain.entity.SysMenu;
+import com.cddx.model.entity.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

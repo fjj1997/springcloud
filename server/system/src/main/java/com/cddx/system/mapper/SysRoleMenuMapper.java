@@ -1,7 +1,7 @@
 package com.cddx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.domain.entity.SysRoleMenu;
+import com.cddx.model.entity.SysRoleMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

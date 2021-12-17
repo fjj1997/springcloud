@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cddx.mapper.SysUserMapper">
+<mapper namespace="com.cddx.system.mapper.SysUserMapper">
 
     <sql id="BaseSql">
         select id, username, telephone, password, login_ip, login_time, status,
@@ -11,13 +11,13 @@
         from sys_user su
     </sql>
 
-    <select id="selectUserByPhone" resultType="com.cddx.domain.entity.SysUser">
+    <select id="selectUserByPhone" resultType="com.cddx.model.entity.SysUser">
         <include refid="BaseSql" />
         where su.telephone = #{phone} and su.del_flag = 0
     </select>
 
 
-    <resultMap id="UserListVo" type="com.cddx.domain.vo.UserVo">
+    <resultMap id="UserListVo" type="com.cddx.system.domain.vo.UserVo">
         <id column="id" property="userId" />
         <result column="username" property="username" />
         <result column="telephone" property="telephone" />
@@ -42,7 +42,7 @@
                  left join sys_user csu on su.create_id = csu.id
     </sql>
 
-    <select id="queryUserList" parameterType="com.cddx.domain.dto.ListUserDto" resultMap="UserListVo">
+    <select id="queryUserList" parameterType="com.cddx.system.domain.dto.ListUserDto" resultMap="UserListVo">
         <include refid="SysUserVo" />
         <where>
             # 排除内置账号
@@ -66,7 +66,7 @@
         </where>
     </select>
 
-    <select id="selectExistByUser" resultType="com.cddx.domain.entity.SysUser">
+    <select id="selectExistByUser" resultType="com.cddx.model.entity.SysUser">
         <include refid="BaseSql" />
         <where>
             <if test="telephone != null and telephone != ''">
@@ -75,15 +75,5 @@
             and del_flag = 0
         </where>
     </select>
-
-    <update id="changePassword">
-        update sys_user
-        <set>
-            <if test="password != null and password != ''">password = #{password},</if>
-            <if test="lastUpdateId != null ">last_update_id = #{lastUpdateId},</if>
-            <if test="lastUpdateTime != null ">last_update_time = #{lastUpdateTime},</if>
-        </set>
-        where id = #{id}
-    </update>
 
 </mapper>

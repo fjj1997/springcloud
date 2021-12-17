@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @ApiModel(value = "编辑部门传输类")
 @EqualsAndHashCode(callSuper = true)
-public class EditDeptDto extends com.cddx.domain.dto.AddDeptDto {
+public class EditDeptDto extends AddDeptDto {
 
     @ApiModelProperty(value = "部门id", required = true)
     @NotNull(message = "部门id不能为空")

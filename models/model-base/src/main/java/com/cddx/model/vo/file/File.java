@@ -1,4 +1,4 @@
-package com.cddx.model.base.file;
+package com.cddx.model.vo.file;
 
 import lombok.Data;
 

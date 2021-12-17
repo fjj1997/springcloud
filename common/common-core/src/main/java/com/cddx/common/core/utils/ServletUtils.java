@@ -60,6 +60,20 @@ public class ServletUtils {
     }
 
     /**
+     * 获取Boolean参数
+     */
+    public static Boolean getParameterToBool(String name) {
+        return Convert.toBool(getRequest().getParameter(name));
+    }
+
+    /**
+     * 获取Boolean参数
+     */
+    public static Boolean getParameterToBool(String name, Boolean defaultValue) {
+        return Convert.toBool(getRequest().getParameter(name), defaultValue);
+    }
+
+    /**
      * 获取request
      */
     public static HttpServletRequest getRequest() {
@@ -95,6 +109,14 @@ public class ServletUtils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static String getHeader(HttpServletRequest request, String name) {
+        String value = request.getHeader(name);
+        if (StringUtils.isEmpty(value)) {
+            return StringUtils.EMPTY;
+        }
+        return urlDecode(value);
     }
 
     public static Map<String, String> getHeaders(HttpServletRequest request) {
@@ -167,7 +189,7 @@ public class ServletUtils {
         try {
             return URLEncoder.encode(str, Constants.UTF8);
         } catch (UnsupportedEncodingException e) {
-            return "";
+            return StringUtils.EMPTY;
         }
     }
 
@@ -181,7 +203,7 @@ public class ServletUtils {
         try {
             return URLDecoder.decode(str, Constants.UTF8);
         } catch (UnsupportedEncodingException e) {
-            return "";
+            return StringUtils.EMPTY;
         }
     }
 

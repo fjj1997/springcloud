@@ -1,14 +1,14 @@
 package com.cddx.system.service;
 
-import com.cddx.base.LoginUser;
-import com.cddx.domain.entity.SysMenu;
-import com.cddx.domain.vo.MenuVo;
-import com.cddx.domain.vo.RouterVo;
-import com.cddx.mapper.SysMenuMapper;
-import com.cddx.utils.BeanUtils;
-import com.cddx.utils.MenuUtils;
-import com.cddx.utils.StringUtils;
-import com.cddx.utils.tree.domain.TreeUtil;
+import com.cddx.common.core.utils.StringUtils;
+import com.cddx.common.core.utils.bean.BeanUtils;
+import com.cddx.common.core.utils.menu.MenuUtils;
+import com.cddx.common.core.utils.tree.TreeUtil;
+import com.cddx.model.base.LoginUser;
+import com.cddx.model.entity.SysMenu;
+import com.cddx.model.vo.menu.MenuVo;
+import com.cddx.model.vo.menu.RouterVo;
+import com.cddx.system.mapper.SysMenuMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -98,7 +98,7 @@ public class SysMenuService {
         // 先转化为menu vo，再构建树形结构
         return TreeUtil.buildTree(list.stream().map(menu -> {
             MenuVo menuVo = new MenuVo();
-            BeanUtils.copyPropertiesIgnoreNull(menu, menuVo);
+            BeanUtils.copyBeanNotNull2Bean(menu, menuVo);
             return menuVo;
         }).collect(Collectors.toList()));
     }
@@ -122,7 +122,7 @@ public class SysMenuService {
         // 先转化为menu vo，再构建树形结构
         return TreeUtil.buildTree(list.stream().map(menu -> {
             MenuVo menuVo = new MenuVo();
-            BeanUtils.copyPropertiesIgnoreNull(menu, menuVo);
+            BeanUtils.copyBeanNotNull2Bean(menu, menuVo);
             return menuVo;
         }).collect(Collectors.toList()));
     }

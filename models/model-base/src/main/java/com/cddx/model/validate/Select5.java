@@ -1,4 +1,4 @@
-package com.cddx.model.base.validate;
+package com.cddx.model.validate;
 
 /**
  * @author 范劲松

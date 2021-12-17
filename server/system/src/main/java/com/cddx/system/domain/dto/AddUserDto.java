@@ -1,6 +1,6 @@
 package com.cddx.system.domain.dto;
 
-import com.cddx.constants.RegexpConstants;
+import com.cddx.common.core.constant.RegexpConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

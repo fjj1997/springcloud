@@ -107,6 +107,8 @@
         <minio.version>8.0.0</minio.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <thumbnailator.version>0.4.14</thumbnailator.version>
+        <swagger.fox.version>3.0.0</swagger.fox.version>
+        <swagger.core.version>1.6.2</swagger.core.version>
     </properties>
 
     <dependencyManagement>
@@ -320,6 +322,13 @@
             <dependency>
                 <groupId>com.cddx</groupId>
                 <artifactId>common-datasource</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
+            <!-- 接口文档 -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>common-swagger</artifactId>
                 <version>${this-project.version}</version>
             </dependency>
 

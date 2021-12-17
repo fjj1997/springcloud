@@ -15,13 +15,6 @@
     </description>
 
     <dependencies>
-
-        <!-- Springboot starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -56,6 +49,12 @@
         <dependency>
             <groupId>com.cddx</groupId>
             <artifactId>common-datasource</artifactId>
+        </dependency>
+
+        <!-- 接口文档 -->
+        <dependency>
+            <groupId>com.cddx</groupId>
+            <artifactId>common-swagger</artifactId>
         </dependency>
     </dependencies>
 

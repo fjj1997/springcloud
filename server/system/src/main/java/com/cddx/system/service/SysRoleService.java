@@ -1,22 +1,21 @@
 package com.cddx.system.service;
 
-import com.cddx.base.BaseEntity;
-import com.cddx.base.LoginUser;
-import com.cddx.base.PageGrid;
-import com.cddx.domain.dto.AddRoleDto;
-import com.cddx.domain.dto.EditRoleDto;
-import com.cddx.domain.dto.ListRoleDto;
-import com.cddx.domain.entity.SysRole;
-import com.cddx.domain.vo.RoleListVo;
-import com.cddx.domain.vo.RoleSelectVo;
-import com.cddx.enums.RolePermType;
-import com.cddx.exception.http.ServerErrorException;
-import com.cddx.mapper.SysRoleMapper;
-import com.cddx.mapper.SysRoleMenuMapper;
-import com.cddx.utils.MyPage;
-import com.cddx.utils.StringUtils;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import com.cddx.common.core.enums.ResultEnum;
+import com.cddx.common.core.enums.RolePermType;
+import com.cddx.common.core.exception.CustomException;
+import com.cddx.common.core.utils.StringUtils;
+import com.cddx.common.core.web.page.TableDataInfo;
+import com.cddx.common.core.web.service.BaseService;
+import com.cddx.model.base.BaseEntity;
+import com.cddx.model.base.LoginUser;
+import com.cddx.model.entity.SysRole;
+import com.cddx.system.domain.dto.AddRoleDto;
+import com.cddx.system.domain.dto.EditRoleDto;
+import com.cddx.system.domain.dto.ListRoleDto;
+import com.cddx.system.domain.vo.RoleListVo;
+import com.cddx.system.domain.vo.RoleSelectVo;
+import com.cddx.system.mapper.SysRoleMapper;
+import com.cddx.system.mapper.SysRoleMenuMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,7 +28,7 @@ import java.util.stream.Collectors;
  * @author 范劲松
  */
 @Service
-public class SysRoleService {
+public class SysRoleService extends BaseService {
     @Resource
     private SysRoleMapper sysRoleMapper;
 
@@ -65,14 +64,10 @@ public class SysRoleService {
      * @param dto 传输类
      * @return 角色列表
      */
-    public MyPage<RoleListVo> list(PageGrid<ListRoleDto> dto) {
-        Integer pageSize = dto.getPageSize();
-        Integer pageNo = dto.getPageNo();
-        Page<RoleListVo> page = PageHelper.startPage(pageNo, pageSize);
-        sysRoleMapper.queryList(dto.getParameter());
-        MyPage<RoleListVo> myPage = new MyPage<>(page);
-        myPage.setList(page);
-        return myPage;
+    public TableDataInfo list(ListRoleDto dto) {
+        startPage();
+        List<RoleListVo> vos = sysRoleMapper.queryList(dto);
+        return getDataTable(vos);
     }
 
     /**
@@ -86,7 +81,7 @@ public class SysRoleService {
         List<SysRole> roles = sysRoleMapper.checkExist(dto.getRoleName());
         roles.removeIf(BaseEntity::isDelFlag);
         if (roles.size() > 0) {
-            throw new ServerErrorException(20051);
+            throw new CustomException(ResultEnum.ROLE_IS_FOUND);
         }
         // 创建角色
         SysRole sysRole = new SysRole();
@@ -119,14 +114,14 @@ public class SysRoleService {
         // 检查角色是否存在
         SysRole role = sysRoleMapper.selectById(dto.getId());
         if (StringUtils.isNull(role) || role.isDelFlag()) {
-            throw new ServerErrorException(20050);
+            throw new CustomException(ResultEnum.ROLE_IS_NOT_FOUND);
         }
         // 检测角色是否存在(不允许同名角色)
         List<SysRole> roles = sysRoleMapper.checkExist(dto.getRoleName());
         // 移除它自己和已删除的角色
         roles.removeIf(item -> item.isDelFlag() || item.getId().equals(dto.getId()));
         if (roles.size() > 0) {
-            throw new ServerErrorException(20051);
+            throw new CustomException(ResultEnum.ROLE_IS_FOUND);
         }
         role.setRoleName(dto.getRoleName());
         if (RolePermType.isType(dto.getType())) {
@@ -154,7 +149,7 @@ public class SysRoleService {
         // 判断角色中时候还有人员
         if (sysRoleMenuMapper.countByRoleId(id) > 0) {
             // 如果还有人，禁止删除
-            throw new ServerErrorException(20052);
+            throw new CustomException(ResultEnum.ROLE_DONT_DELETE);
         }
         // 执行删除 (逻辑删除)
         SysRole role = sysRoleMapper.selectById(id);

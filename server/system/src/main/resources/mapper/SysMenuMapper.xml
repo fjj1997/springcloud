@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cddx.mapper.SysMenuMapper">
+<mapper namespace="com.cddx.system.mapper.SysMenuMapper">
 
     <sql id="BaseSql">
         select id, name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, menu_pom, visible,
@@ -19,7 +19,7 @@
         where m.status = '0' and r.status = '0' and ur.user_id = #{userId}
     </select>
 
-    <select id="selectRouteMenuByUserId" resultType="com.cddx.domain.entity.SysMenu">
+    <select id="selectRouteMenuByUserId" resultType="com.cddx.model.entity.SysMenu">
         select distinct sm.id, sm.`name`, sm.parent_id, sm.order_num, path, sm.component, sm.is_frame,
                         sm.is_cache, sm.menu_type, sm.menu_pom, sm.visible, sm.perms, sm.icon
         from sys_role_menu srm
@@ -29,7 +29,7 @@
         order by sm.order_num
     </select>
 
-    <select id="selectAllRouteMenu" resultType="com.cddx.domain.entity.SysMenu">
+    <select id="selectAllRouteMenu" resultType="com.cddx.model.entity.SysMenu">
         select id, sm.`name`, parent_id, order_num, path, component, is_frame,
                is_cache, menu_type, menu_pom, visible, perms, icon
         from sys_menu sm
@@ -37,7 +37,7 @@
         order by sm.order_num
     </select>
 
-    <select id="selectMenuByRoleId" resultType="com.cddx.domain.entity.SysMenu">
+    <select id="selectMenuByRoleId" resultType="com.cddx.model.entity.SysMenu">
         select distinct sm.id, sm.`name`, sm.parent_id, sm.order_num, path, sm.component, sm.is_frame,
                         sm.is_cache, sm.menu_type, sm.menu_pom, sm.visible, sm.perms, sm.icon
         from sys_role_menu srm
@@ -46,7 +46,7 @@
         order by sm.order_num
     </select>
 
-    <select id="selectAllMenu" resultType="com.cddx.domain.entity.SysMenu">
+    <select id="selectAllMenu" resultType="com.cddx.model.entity.SysMenu">
         select id, sm.`name`, parent_id, order_num, path, component, is_frame,
                is_cache, menu_type, menu_pom, visible, perms, icon
         from sys_menu sm

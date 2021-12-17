@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cddx.mapper.SysDeptMapper">
 
-    <resultMap id="sysDept" type="com.cddx.domain.entity.SysDept">
+    <resultMap id="sysDept" type="com.cddx.model.entity.SysDept">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="create_id" property="createId" />
@@ -36,14 +36,14 @@
         where name = #{name} and del_flag = 0;
     </select>
 
-    <select id="querySelectList" resultType="com.cddx.domain.vo.DeptSelectVo">
+    <select id="querySelectList" resultType="com.cddx.system.domain.vo.DeptSelectVo">
         select distinct id, name as deptName
         from sys_dept
         where del_flag = 0
     </select>
 
-    <select id="queryList" parameterType="com.cddx.domain.dto.ListDeptDto"
-            resultType="com.cddx.domain.vo.DeptListVo">
+    <select id="queryList" parameterType="com.cddx.system.domain.dto.ListDeptDto"
+            resultType="com.cddx.system.domain.vo.DeptListVo">
         select id, name, create_time as createTime, del_flag, ifnull(count(sud.user_id), 0) as personCount
         from sys_dept sd
                  left join sys_user_dept sud on sud.dept_id = sd.id

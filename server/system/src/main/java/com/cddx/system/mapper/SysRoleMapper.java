@@ -1,10 +1,10 @@
 package com.cddx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.domain.dto.ListRoleDto;
-import com.cddx.domain.entity.SysRole;
-import com.cddx.domain.vo.RoleListVo;
-import com.cddx.domain.vo.RoleSelectVo;
+import com.cddx.model.entity.SysRole;
+import com.cddx.system.domain.dto.ListRoleDto;
+import com.cddx.system.domain.vo.RoleListVo;
+import com.cddx.system.domain.vo.RoleSelectVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

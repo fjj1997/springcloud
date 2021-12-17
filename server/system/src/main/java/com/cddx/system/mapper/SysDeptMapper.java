@@ -1,10 +1,10 @@
 package com.cddx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.domain.dto.ListDeptDto;
-import com.cddx.domain.entity.SysDept;
-import com.cddx.domain.vo.DeptListVo;
-import com.cddx.domain.vo.DeptSelectVo;
+import com.cddx.model.entity.SysDept;
+import com.cddx.system.domain.dto.ListDeptDto;
+import com.cddx.system.domain.vo.DeptListVo;
+import com.cddx.system.domain.vo.DeptSelectVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

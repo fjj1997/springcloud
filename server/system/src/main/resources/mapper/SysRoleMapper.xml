@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cddx.mapper.SysRoleMapper">
+<mapper namespace="com.cddx.system.mapper.SysRoleMapper">
 
-    <resultMap id="sysRole" type="com.cddx.domain.entity.SysRole">
+    <resultMap id="sysRole" type="com.cddx.model.entity.SysRole">
         <id column="id" property="id" />
         <result column="role_name" property="roleName" />
         <result column="role_sort" property="roleSort" />
@@ -27,7 +27,7 @@
         where id = #{roleId}
     </select>
 
-    <select id="querySelectList" resultType="com.cddx.domain.vo.RoleSelectVo">
+    <select id="querySelectList" resultType="com.cddx.system.domain.vo.RoleSelectVo">
         select distinct id, role_name as roleName
         from sys_role
         where del_flag = 0
@@ -52,8 +52,8 @@
         where id = #{roleId} and del_flag = 0;
     </select>
 
-    <select id="queryList" parameterType="com.cddx.domain.dto.ListRoleDto"
-            resultType="com.cddx.domain.vo.RoleListVo">
+    <select id="queryList" parameterType="com.cddx.system.domain.dto.ListRoleDto"
+            resultType="com.cddx.system.domain.vo.RoleListVo">
         select id, role_name as roleName, type, status, create_time as createTime, del_flag,
                 ifnull(count(sur.user_id), 0) as personCount
         from sys_role sr

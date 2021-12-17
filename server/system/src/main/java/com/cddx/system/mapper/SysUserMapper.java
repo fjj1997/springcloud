@@ -1,9 +1,9 @@
 package com.cddx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.domain.dto.ListUserDto;
-import com.cddx.domain.entity.SysUser;
-import com.cddx.domain.vo.UserVo;
+import com.cddx.model.entity.SysUser;
+import com.cddx.system.domain.dto.ListUserDto;
+import com.cddx.system.domain.vo.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,11 +47,4 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return 结果
      */
     List<SysUser> selectExistByUser(SysUser user);
-
-    /**
-     * 修改用户密码
-     * @param user
-     * @return
-     */
-    Integer changePassword(SysUser user);
 }

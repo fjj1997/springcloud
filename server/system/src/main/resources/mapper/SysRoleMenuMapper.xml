@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cddx.mapper.SysRoleMenuMapper">
+<mapper namespace="com.cddx.system.mapper.SysRoleMenuMapper">
 
     <insert id="insertBatch">
         insert into sys_role_menu(role_id, menu_id) values

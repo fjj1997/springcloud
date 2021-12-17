@@ -1,7 +1,7 @@
 package com.cddx.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.domain.entity.SysUserDept;
+import com.cddx.model.entity.SysUserDept;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

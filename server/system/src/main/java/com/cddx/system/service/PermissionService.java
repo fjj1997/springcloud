@@ -1,8 +1,8 @@
 package com.cddx.system.service;
 
-import com.cddx.domain.entity.SysRole;
-import com.cddx.enums.RolePermType;
-import com.cddx.mapper.SysRoleMapper;
+import com.cddx.common.core.enums.RolePermType;
+import com.cddx.model.entity.SysRole;
+import com.cddx.system.mapper.SysRoleMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
