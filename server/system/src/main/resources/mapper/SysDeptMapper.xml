@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cddx.mapper.SysDeptMapper">
+
+    <resultMap id="sysDept" type="com.cddx.domain.entity.SysDept">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="create_id" property="createId" />
+        <result column="create_time" property="createTime" />
+        <result column="last_update_id" property="lastUpdateId" />
+        <result column="last_update_time" property="lastUpdateTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <sql id="BaseSql">
+        select distinct id, name, create_id, create_time, last_update_id, last_update_time, del_flag
+        from sys_dept
+    </sql>
+
+    <select id="queryDeptById" parameterType="Long" resultMap="sysDept">
+        <include refid="BaseSql" />
+        where id = #{detpId}
+    </select>
+
+    <select id="existDeptById" resultType="java.lang.Boolean">
+        select distinct count(0)
+        from sys_dept
+        where id = #{detpId} and del_flag = 0;
+    </select>
+
+    <select id="existDeptByName" resultType="java.lang.Boolean">
+        select distinct count(0)
+        from sys_dept
+        where name = #{name} and del_flag = 0;
+    </select>
+
+    <select id="querySelectList" resultType="com.cddx.domain.vo.DeptSelectVo">
+        select distinct id, name as deptName
+        from sys_dept
+        where del_flag = 0
+    </select>
+
+    <select id="queryList" parameterType="com.cddx.domain.dto.ListDeptDto"
+            resultType="com.cddx.domain.vo.DeptListVo">
+        select id, name, create_time as createTime, del_flag, ifnull(count(sud.user_id), 0) as personCount
+        from sys_dept sd
+                 left join sys_user_dept sud on sud.dept_id = sd.id
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            and sd.del_flag = 0
+        </where>
+        group by id
+    </select>
+</mapper>

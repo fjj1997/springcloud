@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cddx.mapper.SysRoleMapper">
+
+    <resultMap id="sysRole" type="com.cddx.domain.entity.SysRole">
+        <id column="id" property="id" />
+        <result column="role_name" property="roleName" />
+        <result column="role_sort" property="roleSort" />
+        <result column="status" property="status" />
+        <result column="create_id" property="createId" />
+        <result column="create_time" property="createTime" />
+        <result column="last_update_id" property="lastUpdateId" />
+        <result column="last_update_time" property="lastUpdateTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <sql id="BaseSql">
+        select distinct id, role_name, role_sort, status,
+               create_id, create_time, last_update_id, last_update_time, del_flag
+        from sys_role
+    </sql>
+
+    <select id="queryRoleById" parameterType="Long" resultMap="sysRole">
+        <include refid="BaseSql" />
+        where id = #{roleId}
+    </select>
+
+    <select id="querySelectList" resultType="com.cddx.domain.vo.RoleSelectVo">
+        select distinct id, role_name as roleName
+        from sys_role
+        where del_flag = 0
+    </select>
+
+    <sql id="selectRoleVo">
+        select distinct r.id, r.role_name, r.role_sort, r.type,
+                        r.status, r.del_flag, r.create_time
+        from sys_role r
+             left join sys_user_role ur on ur.role_id = r.id
+             left join sys_user u on u.id = ur.user_id
+    </sql>
+
+    <select id="selectRolePermissionByUserId" resultMap="sysRole">
+        <include refid="selectRoleVo" />
+        WHERE r.del_flag = '0' and ur.user_id = #{userId}
+    </select>
+
+    <select id="existRoleById" resultType="java.lang.Boolean">
+        select ifnull(count(0), 0)
+        from sys_role
+        where id = #{roleId} and del_flag = 0;
+    </select>
+
+    <select id="queryList" parameterType="com.cddx.domain.dto.ListRoleDto"
+            resultType="com.cddx.domain.vo.RoleListVo">
+        select id, role_name as roleName, type, status, create_time as createTime, del_flag,
+                ifnull(count(sur.user_id), 0) as personCount
+        from sys_role sr
+             left join sys_user_role sur on sur.role_id = sr.id
+        where sr.del_flag = 0
+            <if test="roleName != null and roleName != ''">
+                and sr.role_name like concat('%', #{roleName}, '%')
+            </if>
+            <if test="type != null and type != ''">
+                and sr.type in (#{type})
+            </if>
+        group by sr.id
+    </select>
+
+    <select id="checkExist" resultMap="sysRole">
+        <include refid="BaseSql" />
+        <where>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName}
+            </if>
+        </where>
+    </select>
+</mapper>

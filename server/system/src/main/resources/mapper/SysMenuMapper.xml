@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cddx.mapper.SysMenuMapper">
+
+    <sql id="BaseSql">
+        select id, name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, menu_pom, visible,
+               status, perms, icon, create_id, create_time, last_update_id, last_update_time, del_flag
+        from sys_menu sm
+    </sql>
+
+    <select id="selectMenuPermsByUserId" resultType="java.lang.String">
+        select distinct m.perms
+        from sys_menu m
+                 left join sys_role_menu rm on m.id = rm.menu_id
+                 left join sys_user_role ur on rm.role_id = ur.role_id
+                 left join sys_role r on r.id = ur.role_id
+        where m.status = '0' and r.status = '0' and ur.user_id = #{userId}
+    </select>
+
+    <select id="selectRouteMenuByUserId" resultType="com.cddx.domain.entity.SysMenu">
+        select distinct sm.id, sm.`name`, sm.parent_id, sm.order_num, path, sm.component, sm.is_frame,
+                        sm.is_cache, sm.menu_type, sm.menu_pom, sm.visible, sm.perms, sm.icon
+        from sys_role_menu srm
+                 left join sys_user_role sur on srm.role_id = sur.role_id
+                 left join sys_menu sm on srm.menu_id = sm.id
+        where sur.user_id = #{userId} and sm.del_flag = 0 and sm.`status` = 0 and menu_type in ('M', 'C')
+        order by sm.order_num
+    </select>
+
+    <select id="selectAllRouteMenu" resultType="com.cddx.domain.entity.SysMenu">
+        select id, sm.`name`, parent_id, order_num, path, component, is_frame,
+               is_cache, menu_type, menu_pom, visible, perms, icon
+        from sys_menu sm
+        where sm.del_flag = 0 and sm.`status` = 0 and menu_type in ('M', 'C')
+        order by sm.order_num
+    </select>
+
+    <select id="selectMenuByRoleId" resultType="com.cddx.domain.entity.SysMenu">
+        select distinct sm.id, sm.`name`, sm.parent_id, sm.order_num, path, sm.component, sm.is_frame,
+                        sm.is_cache, sm.menu_type, sm.menu_pom, sm.visible, sm.perms, sm.icon
+        from sys_role_menu srm
+                 left join sys_menu sm on srm.menu_id = sm.id
+        where srm.role_id = #{roleId} and sm.del_flag = 0 and sm.`status` = 0
+        order by sm.order_num
+    </select>
+
+    <select id="selectAllMenu" resultType="com.cddx.domain.entity.SysMenu">
+        select id, sm.`name`, parent_id, order_num, path, component, is_frame,
+               is_cache, menu_type, menu_pom, visible, perms, icon
+        from sys_menu sm
+        where sm.del_flag = 0 and sm.`status` = 0
+        order by sm.order_num
+    </select>
+</mapper>
