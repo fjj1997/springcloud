@@ -91,6 +91,9 @@
         <dynamic-ds.version>3.4.1</dynamic-ds.version>
 
         <poi.version>4.1.2</poi.version>
+        <jjwt.version>0.9.1</jjwt.version>
+
+        <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
 
         <commons-pool.version>2.10.0</commons-pool.version>
         <commons-io.version>2.11.0</commons-io.version>
@@ -190,6 +193,20 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- 线程传递值 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
             </dependency>
 
             <!-- Apache Http Components -->

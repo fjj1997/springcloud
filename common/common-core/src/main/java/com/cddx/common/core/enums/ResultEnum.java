@@ -21,7 +21,7 @@ public enum ResultEnum {
 
     WARNING(300, "操作警告"),
     INVALID_TOKEN(403, "登录信息失效"),
-    NO_TOKEN(404, "没有token"),
+    NO_TOKEN(404, "未提供token"),
 
     AOP_PARAM_ERROR(409, "参数绑定异常"),
     FILE_SIZE_LIMIT_ERROR(419, "文件过大"),
@@ -38,7 +38,8 @@ public enum ResultEnum {
     DATA_ERROR(10004, "数据异常"),
     SIGN_DISABLE(10005, "暂停访问"),
     FIELD_VALIDATION_ERROR(10006, "数据校验异常"),
-    DEFAULT_FAILED_MSG(10007, "短信服务繁忙，请稍后再请求"),
+    NOT_PERMISSION_ERROR(10007, "无访问权限"),
+    DEFAULT_FAILED_MSG(10008, "短信服务繁忙，请稍后再请求"),
 
     GET_ERROR_VALIDATE_CODE(15000, "验证码获取失败"),
     OUT_DATE_VALIDATE_CODE(15001, "验证码已过期"),

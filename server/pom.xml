@@ -13,6 +13,7 @@
     <modules>
         <module>file</module>
         <module>system</module>
+        <module>auth</module>
     </modules>
 
     <artifactId>server</artifactId>
