@@ -1,6 +1,7 @@
 package com.cddx.system;
 
 import com.cddx.common.core.annotation.EnableCustomConfig;
+import com.cddx.swagger.annotation.EnableCustomSwagger2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author 范劲松
  */
 @EnableCustomConfig
-@SpringBootApplication
+@EnableCustomSwagger2
+@SpringBootApplication(scanBasePackages = {"com.cddx"})
 public class SystemApplication {
 
     public static void main(String[] args) {
