@@ -5,12 +5,9 @@ import com.cddx.common.core.constant.Constants;
 import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.core.web.response.AjaxResult;
-import lombok.Data;
-import lombok.ToString;
+import com.cddx.common.security.config.ActuatorConfig;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
@@ -22,8 +19,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 针对于SpringCloud Actuator的检测白名单，只有白名单ip才可访问
@@ -37,7 +32,7 @@ import java.util.List;
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 public class ActuatorFilter implements Filter {
     @Resource
-    private Config config;
+    private ActuatorConfig config;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -82,16 +77,6 @@ public class ActuatorFilter implements Filter {
      * @return 判断结果
      */
     private boolean isMatchWhiteIp(String ip) {
-        log.info("actuator ip: {}", ip);
         return config.getIp().stream().anyMatch(ip::startsWith);
-    }
-
-    @Data
-    @ToString
-    @RefreshScope
-    @Configuration
-    @ConfigurationProperties("management.white")
-    static class Config {
-        private List<String> ip = new ArrayList<>();
     }
 }

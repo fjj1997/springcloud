@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class RequestParamLogFilter implements Filter {
     /**
      * 不打印日志的接口
      */
-    private static final List<String> DEFAULT_IGNORE = new ArrayList<>(Arrays.asList("/actuator/**"));
+    private static final List<String> DEFAULT_IGNORE = new ArrayList<>(Collections.singletonList("/actuator/**"));
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {

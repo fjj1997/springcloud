@@ -32,10 +32,10 @@
         </dependency>
 
         <!-- SpringBoot Actuator -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- SpringCloud Alibaba Sentinel -->
         <dependency>
