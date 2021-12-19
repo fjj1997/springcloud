@@ -1,6 +1,6 @@
-package com.cddx.swagger.annotation;
+package com.cddx.common.swagger.annotation;
 
-import com.cddx.swagger.config.SwaggerAutoConfiguration;
+import com.cddx.common.swagger.config.SwaggerAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

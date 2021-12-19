@@ -47,6 +47,7 @@ spring:
           nacos:
             server-addr: @nacos-config-addr@
             dataId: sentinel-gateway
+            namespace: @nacos-config-namespace@
             groupId: @nacos-config-group@
             data-type: json
             rule-type: flow

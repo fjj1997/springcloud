@@ -1,4 +1,4 @@
-package com.cddx.swagger.config;
+package com.cddx.common.swagger.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

@@ -1,4 +1,4 @@
-package com.cddx.swagger.config;
+package com.cddx.common.swagger.config;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

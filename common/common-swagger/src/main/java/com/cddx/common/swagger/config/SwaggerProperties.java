@@ -1,4 +1,4 @@
-package com.cddx.swagger.config;
+package com.cddx.common.swagger.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

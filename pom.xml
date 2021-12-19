@@ -342,6 +342,13 @@
                 <version>${this-project.version}</version>
             </dependency>
 
+            <!-- 安全配置 -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>common-security</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
             <!-- 接口文档 -->
             <dependency>
                 <groupId>com.cddx</groupId>

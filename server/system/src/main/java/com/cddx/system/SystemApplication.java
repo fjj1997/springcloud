@@ -1,7 +1,7 @@
 package com.cddx.system;
 
 import com.cddx.common.core.annotation.EnableCustomConfig;
-import com.cddx.swagger.annotation.EnableCustomSwagger2;
+import com.cddx.common.swagger.annotation.EnableCustomSwagger2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
