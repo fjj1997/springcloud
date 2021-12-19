@@ -49,7 +49,7 @@ public class ActuatorFilter implements Filter {
             // 检测是否白名单ip
             if (isMatchWhiteIp(IpUtils.getIpAddr(request))) {
                 // 放行
-                log.info("url: {}, ip: {} 通过", request.getRequestURI(), IpUtils.getIpAddr(request));
+//                log.info("url: {}, ip: {} 通过", request.getRequestURI(), IpUtils.getIpAddr(request));
                 chain.doFilter(request, servletResponse);
                 return;
             }
