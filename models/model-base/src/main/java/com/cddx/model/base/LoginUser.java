@@ -1,6 +1,7 @@
 package com.cddx.model.base;
 
 import com.cddx.model.entity.SysUser;
+import com.cddx.model.enums.UserClientType;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -59,4 +60,10 @@ public class LoginUser implements Serializable {
      */
     private SysUser sysUser;
 
+    private UserClientType clientType;
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+        this.clientType = UserClientType.MANAGE;
+    }
 }

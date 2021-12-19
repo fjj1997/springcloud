@@ -1,7 +1,7 @@
-package com.cddx.security.utils;
+package com.cddx.common.security.utils;
 
 import com.cddx.model.base.LoginUser;
-import com.cddx.security.auth.AuthLogic;
+import com.cddx.common.security.auth.AuthLogic;
 
 /**
  * 权限工具

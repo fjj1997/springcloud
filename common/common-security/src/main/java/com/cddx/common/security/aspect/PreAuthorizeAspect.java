@@ -1,11 +1,12 @@
-package com.cddx.security.aspect;
+package com.cddx.common.security.aspect;
 
 import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.exception.CustomException;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.model.base.LoginUser;
-import com.cddx.security.annotation.PreAuthorize;
-import com.cddx.security.service.TokenService;
+import com.cddx.common.security.annotation.PreAuthorize;
+import com.cddx.common.security.service.TokenService;
+import com.cddx.model.enums.UserClientType;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -48,7 +49,7 @@ public class PreAuthorizeAspect {
     /**
      * 声明AOP签名
      */
-    @Pointcut("@annotation(com.cddx.security.annotation.PreAuthorize)")
+    @Pointcut("@annotation(com.cddx.common.security.annotation.PreAuthorize)")
     public void pointcut() {
     }
 
@@ -68,6 +69,13 @@ public class PreAuthorizeAspect {
         PreAuthorize annotation = method.getAnnotation(PreAuthorize.class);
         if (annotation == null) {
             return point.proceed();
+        }
+
+        if (StringUtils.isNotNull(annotation.client())) {
+            if (hasClientPermi(annotation.client())) {
+                return point.proceed();
+            }
+            throw new CustomException(ResultEnum.NOT_PERMISSION_ERROR);
         }
 
         if (StringUtils.isNotEmpty(annotation.hasPermi())) {
@@ -103,6 +111,20 @@ public class PreAuthorizeAspect {
         }
 
         return point.proceed();
+    }
+
+    /**
+     * 是否具有某客户端权限
+     *
+     * @param clientType 用户访问客户端权限
+     * @return 用户是否具备某权限
+     */
+    public boolean hasClientPermi(UserClientType clientType) {
+        LoginUser userInfo = tokenService.getLoginUser();
+        if (StringUtils.isNull(userInfo) || StringUtils.isNull(userInfo.getClientType())) {
+            return false;
+        }
+        return clientType.eq(userInfo.getClientType());
     }
 
     /**

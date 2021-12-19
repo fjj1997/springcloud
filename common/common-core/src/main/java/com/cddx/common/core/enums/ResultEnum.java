@@ -18,10 +18,7 @@ public enum ResultEnum {
     SEND_VALID_CODE(205, "验证码已发送,请耐心等待~"),
     LOGIN_OUT_SUCCESS(207, "退出登录成功"),
 
-
     WARNING(300, "操作警告"),
-    INVALID_TOKEN(403, "登录信息失效"),
-    NO_TOKEN(404, "未提供token"),
 
     AOP_PARAM_ERROR(409, "参数绑定异常"),
     FILE_SIZE_LIMIT_ERROR(419, "文件过大"),
@@ -31,6 +28,14 @@ public enum ResultEnum {
 
     IMPORT_DATA_IS_NULL(432, "导入的数据为空"),
 
+    NO_TOKEN(1001, "未提供访问令牌"),
+    INVALID_TOKEN(1002, "登录信息失效"),
+    INVALID_CHECK_TOKEN(1003, "令牌验证失败"),
+    NOT_PERMISSION_ERROR(1007, "无访问权限"),
+
+    NO_HAVE_APP_ERROR(1131, "app不存在, 请先联系管理员申请app"),
+    APP_SIGN_ERROR(1132, "签名出错"),
+
     UNKNOWN_ERROR(10000, "未知错误"),
     BUSY_BUSINESS(10001, "业务繁忙"),
     BUSINESS_ERROR(10002, "业务异常"),
@@ -38,7 +43,6 @@ public enum ResultEnum {
     DATA_ERROR(10004, "数据异常"),
     SIGN_DISABLE(10005, "暂停访问"),
     FIELD_VALIDATION_ERROR(10006, "数据校验异常"),
-    NOT_PERMISSION_ERROR(10007, "无访问权限"),
     DEFAULT_FAILED_MSG(10008, "短信服务繁忙，请稍后再请求"),
 
     GET_ERROR_VALIDATE_CODE(15000, "验证码获取失败"),
@@ -59,8 +63,9 @@ public enum ResultEnum {
     ROLE_IS_FOUND(20051, "角色已存在"),
     ROLE_DONT_DELETE(20052, "禁止删除！请将人员移出角色后重试~"),
 
-    NO_HAVE_APP_ERROR(1031, "app不存在, 请先联系管理员申请app"),
-    APP_SIGN_ERROR(1041, "签名出错");
+
+
+    ;
 
     /** 响应状态码 */
     private final Integer code;

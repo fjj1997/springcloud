@@ -1,4 +1,6 @@
-package com.cddx.security.annotation;
+package com.cddx.common.security.annotation;
+
+import com.cddx.model.enums.UserClientType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,6 +15,12 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PreAuthorize {
+
+    /**
+     * 验证当前访问接口与用户应当存在的平台是否统一
+     */
+    public UserClientType client() ;
+
     /**
      * 验证用户是否具备某权限
      */

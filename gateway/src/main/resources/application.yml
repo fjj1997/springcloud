@@ -6,6 +6,13 @@ spring:
           lowerCaseServiceId: true
           enabled: true
       routes:
+        # 授权服务
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
         # 系统服务
         - id: system
           uri: lb://system

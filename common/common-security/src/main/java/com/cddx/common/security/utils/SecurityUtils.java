@@ -1,4 +1,4 @@
-package com.cddx.security.utils;
+package com.cddx.common.security.utils;
 
 import com.cddx.common.core.constant.SecurityConstants;
 import com.cddx.common.core.constant.TokenConstants;

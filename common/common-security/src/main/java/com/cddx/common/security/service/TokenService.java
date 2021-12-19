@@ -1,4 +1,4 @@
-package com.cddx.security.service;
+package com.cddx.common.security.service;
 
 import com.cddx.common.core.constant.CacheConstants;
 import com.cddx.common.core.constant.SecurityConstants;
@@ -9,7 +9,7 @@ import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.redis.service.RedisService;
 import com.cddx.model.base.LoginUser;
-import com.cddx.security.utils.SecurityUtils;
+import com.cddx.common.security.utils.SecurityUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
