@@ -54,6 +54,12 @@
             <artifactId>common-core</artifactId>
         </dependency>
 
+        <!-- 接口文档 -->
+        <dependency>
+            <groupId>com.cddx</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
