@@ -3,7 +3,7 @@ package com.cddx.file.controller;
 import com.cddx.common.core.web.response.R;
 import com.cddx.common.core.utils.file.FileUtils;
 import com.cddx.file.service.IFileService;
-import com.cddx.model.vo.file.File;
+import com.cddx.common.core.model.vo.file.File;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;

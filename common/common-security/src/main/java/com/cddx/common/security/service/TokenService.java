@@ -8,7 +8,7 @@ import com.cddx.common.core.utils.ServletUtils;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.redis.service.RedisService;
-import com.cddx.model.base.LoginUser;
+import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.security.utils.SecurityUtils;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +32,7 @@ public class TokenService {
 
     protected static final long MILLIS_MINUTE = 60 * MILLIS_SECOND;
 
-    private final static long expireTime = CacheConstants.EXPIRATION;
+    private final static long EXPIRE_TIME = CacheConstants.EXPIRATION;
 
     private final static String ACCESS_TOKEN = CacheConstants.LOGIN_TOKEN_KEY;
 
@@ -43,8 +43,8 @@ public class TokenService {
      */
     public Map<String, Object> createToken(LoginUser loginUser) {
         String token = IdUtils.fastUUID();
-        Long userId = loginUser.getSysUser().getId();
-        String userName = loginUser.getSysUser().getUsername();
+        Long userId = loginUser.getSysUser().getUserId();
+        String userName = loginUser.getSysUser().getUserName();
         loginUser.setToken(token);
         loginUser.setUserid(userId);
         loginUser.setUsername(userName);
@@ -60,7 +60,7 @@ public class TokenService {
         // 接口返回信息
         Map<String, Object> rspMap = new HashMap<String, Object>();
         rspMap.put("access_token", JwtUtils.createToken(claimsMap));
-        rspMap.put("expires_in", expireTime);
+        rspMap.put("expires_in", EXPIRE_TIME);
         return rspMap;
     }
 
@@ -141,10 +141,10 @@ public class TokenService {
      */
     public void refreshToken(LoginUser loginUser) {
         loginUser.setLoginTime(System.currentTimeMillis());
-        loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);
+        loginUser.setExpireTime(loginUser.getLoginTime() + EXPIRE_TIME * MILLIS_MINUTE);
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginUser.getToken());
-        redisService.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
+        redisService.setCacheObject(userKey, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
     }
 
     private String getTokenKey(String token) {

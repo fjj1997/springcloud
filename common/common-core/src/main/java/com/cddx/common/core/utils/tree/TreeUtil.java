@@ -1,6 +1,6 @@
 package com.cddx.common.core.utils.tree;
 
-import com.cddx.model.base.TreeNode;
+import com.cddx.common.core.model.base.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

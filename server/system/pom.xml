@@ -57,6 +57,12 @@
             <artifactId>common-datasource</artifactId>
         </dependency>
 
+        <!-- 数据源引入 -->
+        <dependency>
+            <groupId>com.cddx</groupId>
+            <artifactId>common-datascope</artifactId>
+        </dependency>
+
         <!-- 安全配置 -->
         <dependency>
             <groupId>com.cddx</groupId>

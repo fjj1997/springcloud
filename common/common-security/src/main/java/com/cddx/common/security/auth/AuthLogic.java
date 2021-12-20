@@ -2,9 +2,9 @@ package com.cddx.common.security.auth;
 
 import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.exception.CustomException;
+import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.core.utils.SpringUtils;
 import com.cddx.common.core.utils.StringUtils;
-import com.cddx.model.base.LoginUser;
 import com.cddx.common.security.service.TokenService;
 import com.cddx.common.security.utils.SecurityUtils;
 import org.springframework.util.PatternMatchUtils;

@@ -19,6 +19,7 @@
         <module>common-datasource</module>
         <module>common-swagger</module>
         <module>common-security</module>
+        <module>common-datascope</module>
     </modules>
 
 </project>

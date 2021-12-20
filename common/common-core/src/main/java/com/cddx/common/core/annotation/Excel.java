@@ -1,5 +1,7 @@
 package com.cddx.common.core.annotation;
 
+import com.cddx.common.core.utils.poi.ExcelHandlerAdapter;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
 /**
  * 自定义导出Excel数据注解
  *
- * @author 范劲松
+ * @author ruoyi
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
@@ -102,7 +104,17 @@ public @interface Excel {
     /**
      * 导出字段对齐方式（0：默认；1：靠左；2：居中；3：靠右）
      */
-    Align align() default Align.AUTO;
+    public Align align() default Align.AUTO;
+
+    /**
+     * 自定义数据处理器
+     */
+    public Class<?> handler() default ExcelHandlerAdapter.class;
+
+    /**
+     * 自定义数据处理器参数
+     */
+    public String[] args() default {};
 
     public enum Align {
         AUTO(0), LEFT(1), CENTER(2), RIGHT(3);

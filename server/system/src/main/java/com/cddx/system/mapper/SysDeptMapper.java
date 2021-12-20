@@ -1,56 +1,118 @@
 package com.cddx.system.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cddx.model.entity.SysDept;
-import com.cddx.system.domain.dto.ListDeptDto;
-import com.cddx.system.domain.vo.DeptListVo;
-import com.cddx.system.domain.vo.DeptSelectVo;
-import org.apache.ibatis.annotations.Mapper;
+import com.cddx.common.core.model.entity.SysDept;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
+ * 部门管理 数据层
+ *
  * @author 范劲松
  */
-@Mapper
-public interface SysDeptMapper extends BaseMapper<SysDept> {
+public interface SysDeptMapper {
+    /**
+     * 查询部门管理数据
+     *
+     * @param dept 部门信息
+     * @return 部门信息集合
+     */
+    public List<SysDept> selectDeptList(SysDept dept);
 
     /**
-     * 分页查询部门列表
+     * 根据角色ID查询部门树信息
      *
-     * @param parameter 查询筛选条件
+     * @param roleId            角色ID
+     * @param deptCheckStrictly 部门树选择项是否关联显示
+     * @return 选中部门列表
+     */
+    public List<Long> selectDeptListByRoleId(@Param("roleId") Long roleId, @Param("deptCheckStrictly") boolean deptCheckStrictly);
+
+    /**
+     * 根据部门ID查询信息
+     *
+     * @param deptId 部门ID
+     * @return 部门信息
+     */
+    public SysDept selectDeptById(Long deptId);
+
+    /**
+     * 根据ID查询所有子部门
+     *
+     * @param deptId 部门ID
+     * @return 部门列表
+     */
+    public List<SysDept> selectChildrenDeptById(Long deptId);
+
+    /**
+     * 根据ID查询所有子部门（正常状态）
+     *
+     * @param deptId 部门ID
+     * @return 子部门数
+     */
+    public int selectNormalChildrenDeptById(Long deptId);
+
+    /**
+     * 是否存在子节点
+     *
+     * @param deptId 部门ID
      * @return 结果
      */
-    List<DeptListVo> queryList(ListDeptDto parameter);
+    public int hasChildByDeptId(Long deptId);
 
     /**
-     * 通过部门id查询部门信息
+     * 查询部门是否存在用户
      *
-     * @param deptId 部门id
+     * @param deptId 部门ID
      * @return 结果
      */
-    SysDept queryDeptById(Long deptId);
+    public int checkDeptExistUser(Long deptId);
 
     /**
-     * 查询某部门是否存在通过部门id
+     * 校验部门名称是否唯一
      *
-     * @param deptId 部门id
+     * @param deptName 部门名称
+     * @param parentId 父部门ID
      * @return 结果
      */
-    boolean existDeptById(Long deptId);
+    public SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
     /**
-     * 查询某部门是否存在通过部门名
+     * 新增部门信息
      *
-     * @param name 部门名
+     * @param dept 部门信息
      * @return 结果
      */
-    boolean existDeptByName(String name);
+    public int insertDept(SysDept dept);
 
     /**
-     * 角色下拉框选择列表
+     * 修改部门信息
      *
-     * @return 列表
+     * @param dept 部门信息
+     * @return 结果
      */
-    List<DeptSelectVo> querySelectList();
+    public int updateDept(SysDept dept);
+
+    /**
+     * 修改所在部门正常状态
+     *
+     * @param deptIds 部门ID组
+     */
+    public void updateDeptStatusNormal(Long[] deptIds);
+
+    /**
+     * 修改子元素关系
+     *
+     * @param depts 子元素
+     * @return 结果
+     */
+    public int updateDeptChildren(@Param("depts") List<SysDept> depts);
+
+    /**
+     * 删除部门管理信息
+     *
+     * @param deptId 部门ID
+     * @return 结果
+     */
+    public int deleteDeptById(Long deptId);
 }

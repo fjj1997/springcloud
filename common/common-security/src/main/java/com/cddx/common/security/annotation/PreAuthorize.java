@@ -1,6 +1,6 @@
 package com.cddx.common.security.annotation;
 
-import com.cddx.model.enums.UserClientType;
+import com.cddx.common.core.enums.UserClientType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

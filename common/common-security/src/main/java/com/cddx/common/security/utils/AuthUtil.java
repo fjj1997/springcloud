@@ -1,6 +1,6 @@
 package com.cddx.common.security.utils;
 
-import com.cddx.model.base.LoginUser;
+import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.security.auth.AuthLogic;
 
 /**

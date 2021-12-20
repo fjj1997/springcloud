@@ -5,7 +5,7 @@ import com.cddx.common.core.constant.TokenConstants;
 import com.cddx.common.core.context.SecurityContextHolder;
 import com.cddx.common.core.utils.ServletUtils;
 import com.cddx.common.core.utils.StringUtils;
-import com.cddx.model.base.LoginUser;
+import com.cddx.common.core.model.base.LoginUser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,19 @@ import javax.servlet.http.HttpServletRequest;
  * @author 范劲松
  */
 public class SecurityUtils {
+    /**
+     * 获取用户ID
+     */
+    public static Long getUserId() {
+        return SecurityContextHolder.getUserId();
+    }
+
+    /**
+     * 获取用户名称
+     */
+    public static String getUsername() {
+        return SecurityContextHolder.getUserName();
+    }
 
     /**
      * 获取登录用户信息
