@@ -4,12 +4,12 @@ import com.cddx.common.core.enums.UserClientType;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.domain.entity.SysNotice;
 import com.cddx.system.service.SysNoticeService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +51,7 @@ public class SysNoticeController extends BaseController {
      * 新增通知公告
      */
     @PreAuthorize(hasPermi = "system:notice:add", client = UserClientType.MANAGE)
-    // @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "通知公告", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysNotice notice) {
         notice.setCreateBy(SecurityUtils.getUserId());
@@ -62,7 +62,7 @@ public class SysNoticeController extends BaseController {
      * 修改通知公告
      */
     @PreAuthorize(hasPermi = "system:notice:edit", client = UserClientType.MANAGE)
-    // @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysNotice notice) {
         notice.setUpdateBy(SecurityUtils.getUserId());
@@ -73,7 +73,7 @@ public class SysNoticeController extends BaseController {
      * 删除通知公告
      */
     @PreAuthorize(hasPermi = "system:notice:remove", client = UserClientType.MANAGE)
-    // @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "通知公告", businessType = BusinessType.DELETE)
     @DeleteMapping("/{noticeIds}")
     public AjaxResult remove(@PathVariable Long[] noticeIds) {
         return toAjax(noticeService.deleteNoticeByIds(noticeIds));

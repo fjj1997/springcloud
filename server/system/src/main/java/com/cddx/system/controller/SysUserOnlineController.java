@@ -7,6 +7,8 @@ import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.redis.service.RedisService;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.system.domain.entity.SysUserOnline;
@@ -65,7 +67,7 @@ public class SysUserOnlineController extends BaseController {
      * 强退用户
      */
     @PreAuthorize(hasPermi = "system:online:forceLogout", client = UserClientType.MANAGE)
-    // @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "在线用户", businessType = BusinessType.FORCE)
     @DeleteMapping("/{tokenId}")
     public AjaxResult forceLogout(@PathVariable String tokenId) {
         redisService.deleteObject(CacheConstants.LOGIN_TOKEN_KEY + tokenId);

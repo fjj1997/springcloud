@@ -1,15 +1,19 @@
 package com.cddx.system.controller;
 
+import com.cddx.common.api.RemoteFileService;
 import com.cddx.common.core.constant.UserConstants;
 import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.core.model.entity.SysUser;
+import com.cddx.common.core.model.vo.file.File;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.core.web.response.R;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.service.TokenService;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.SysUserService;
-import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,8 +34,8 @@ public class SysProfileController extends BaseController {
     @Resource
     private TokenService tokenService;
 
-    // @Resource
-    // private RemoteFileService remoteFileService;
+    @Resource
+    private RemoteFileService remoteFileService;
 
     /**
      * 个人信息
@@ -49,7 +53,7 @@ public class SysProfileController extends BaseController {
     /**
      * 修改用户
      */
-    // @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult updateProfile(@RequestBody SysUser user) {
         LoginUser loginUser = SecurityUtils.getLoginUser();
@@ -79,7 +83,7 @@ public class SysProfileController extends BaseController {
     /**
      * 重置密码
      */
-    // @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PutMapping("/updatePwd")
     public AjaxResult updatePwd(String oldPassword, String newPassword) {
         String username = SecurityUtils.getUsername();
@@ -104,25 +108,25 @@ public class SysProfileController extends BaseController {
     /**
      * 头像上传
      */
-    // @Log(title = "用户头像", businessType = BusinessType.UPDATE)
-    // @PostMapping("/avatar")
-    // public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
-    //     if (!file.isEmpty()) {
-    //         LoginUser loginUser = SecurityUtils.getLoginUser();
-    //         R<SysFile> fileResult = remoteFileService.upload(file);
-    //         if (StringUtils.isNull(fileResult) || StringUtils.isNull(fileResult.getData())) {
-    //             return AjaxResult.error("文件服务异常，请联系管理员");
-    //         }
-    //         String url = fileResult.getData().getUrl();
-    //         if (userService.updateUserAvatar(loginUser.getUsername(), url)) {
-    //             AjaxResult ajax = AjaxResult.success();
-    //             ajax.put("imgUrl", url);
-    //             // 更新缓存用户头像
-    //             loginUser.getSysUser().setAvatar(url);
-    //             tokenService.setLoginUser(loginUser);
-    //             return ajax;
-    //         }
-    //     }
-    //     return AjaxResult.error("上传图片异常，请联系管理员");
-    // }
+    @Log(title = "用户头像", businessType = BusinessType.UPDATE)
+    @PostMapping("/avatar")
+    public AjaxResult avatar(@RequestParam("avatarfile") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            LoginUser loginUser = SecurityUtils.getLoginUser();
+            R<File> fileResult = remoteFileService.upload(file);
+            if (StringUtils.isNull(fileResult) || StringUtils.isNull(fileResult.getData())) {
+                return AjaxResult.error("文件服务异常，请联系管理员");
+            }
+            String url = fileResult.getData().getUrl();
+            if (userService.updateUserAvatar(loginUser.getUsername(), url)) {
+                AjaxResult ajax = AjaxResult.success();
+                ajax.put("imgUrl", url);
+                // 更新缓存用户头像
+                loginUser.getSysUser().setAvatar(url);
+                tokenService.setLoginUser(loginUser);
+                return ajax;
+            }
+        }
+        return AjaxResult.error("上传图片异常，请联系管理员");
+    }
 }

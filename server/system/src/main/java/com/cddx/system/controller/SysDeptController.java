@@ -7,6 +7,8 @@ import com.cddx.common.core.model.entity.SysDept;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.SysDeptService;
@@ -91,7 +93,7 @@ public class SysDeptController extends BaseController {
     /**
      * 新增部门
      */
-    // @Log(title = "部门管理", businessType = BusinessType.INSERT)
+    @Log(title = "部门管理", businessType = BusinessType.INSERT)
     @PreAuthorize(hasPermi = "system:dept:add", client = UserClientType.MANAGE)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDept dept) {
@@ -106,7 +108,7 @@ public class SysDeptController extends BaseController {
      * 修改部门
      */
     @PreAuthorize(hasPermi = "system:dept:edit", client = UserClientType.MANAGE)
-    // @Log(title = "部门管理", businessType = BusinessType.UPDATE)
+    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDept dept) {
         if (UserConstants.NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
@@ -125,7 +127,7 @@ public class SysDeptController extends BaseController {
      * 删除部门
      */
     @PreAuthorize(hasPermi = "system:dept:remove", client = UserClientType.MANAGE)
-    // @Log(title = "部门管理", businessType = BusinessType.DELETE)
+    @Log(title = "部门管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{deptId}")
     public AjaxResult remove(@PathVariable Long deptId) {
         if (deptService.hasChildByDeptId(deptId)) {

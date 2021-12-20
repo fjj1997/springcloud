@@ -1,15 +1,16 @@
 package com.cddx.system.controller;
 
 import com.cddx.common.core.enums.UserClientType;
+import com.cddx.common.core.model.entity.SysOperLog;
 import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
+import com.cddx.common.security.annotation.InnerAuth;
 import com.cddx.common.security.annotation.PreAuthorize;
-import com.cddx.system.domain.entity.SysOperLog;
 import com.cddx.system.service.SysOperLogService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,7 +36,7 @@ public class SysOperlogController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "操作日志", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:operlog:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysOperLog operLog) {
@@ -44,7 +45,7 @@ public class SysOperlogController extends BaseController {
         util.exportExcel(response, list, "操作日志");
     }
 
-    // @Log(title = "操作日志", businessType = BusinessType.DELETE)
+    @Log(title = "操作日志", businessType = BusinessType.DELETE)
     @PreAuthorize(hasPermi = "system:operlog:remove", client = UserClientType.MANAGE)
     @DeleteMapping("/{operIds}")
     public AjaxResult remove(@PathVariable Long[] operIds) {
@@ -52,14 +53,14 @@ public class SysOperlogController extends BaseController {
     }
 
     @PreAuthorize(hasPermi = "system:operlog:remove", client = UserClientType.MANAGE)
-    // @Log(title = "操作日志", businessType = BusinessType.CLEAN)
+    @Log(title = "操作日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
     public AjaxResult clean() {
         operLogService.cleanOperLog();
         return AjaxResult.success();
     }
 
-    // @InnerAuth
+    @InnerAuth
     @PostMapping
     public AjaxResult add(@RequestBody SysOperLog operLog) {
         return toAjax(operLogService.insertOperlog(operLog));

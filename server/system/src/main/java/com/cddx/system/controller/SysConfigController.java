@@ -6,12 +6,12 @@ import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.domain.entity.SysConfig;
 import com.cddx.system.service.SysConfigService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +41,7 @@ public class SysConfigController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "参数管理", businessType = BusinessType.EXPORT)
+    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:config:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysConfig config) {
@@ -70,7 +70,7 @@ public class SysConfigController extends BaseController {
      * 新增参数配置
      */
     @PreAuthorize(hasPermi = "system:config:add", client = UserClientType.MANAGE)
-    // @Log(title = "参数管理", businessType = BusinessType.INSERT)
+    @Log(title = "参数管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
@@ -84,7 +84,7 @@ public class SysConfigController extends BaseController {
      * 修改参数配置
      */
     @PreAuthorize(hasPermi = "system:config:edit", client = UserClientType.MANAGE)
-    // @Log(title = "参数管理", businessType = BusinessType.UPDATE)
+    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
@@ -98,7 +98,7 @@ public class SysConfigController extends BaseController {
      * 删除参数配置
      */
     @PreAuthorize(hasPermi = "system:config:remove", client = UserClientType.MANAGE)
-    // @Log(title = "参数管理", businessType = BusinessType.DELETE)
+    @Log(title = "参数管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
     public AjaxResult remove(@PathVariable Long[] configIds) {
         configService.deleteConfigByIds(configIds);
@@ -109,7 +109,7 @@ public class SysConfigController extends BaseController {
      * 刷新参数缓存
      */
     @PreAuthorize(hasPermi = "system:config:remove", client = UserClientType.MANAGE)
-    // @Log(title = "参数管理", businessType = BusinessType.CLEAN)
+    @Log(title = "参数管理", businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
     public AjaxResult refreshCache() {
         configService.resetConfigCache();

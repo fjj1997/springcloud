@@ -3,13 +3,15 @@ package com.cddx.system.controller;
 
 import com.cddx.common.core.constant.UserConstants;
 import com.cddx.common.core.enums.UserClientType;
+import com.cddx.common.core.model.entity.SysMenu;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.menu.MenuUtils;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
-import com.cddx.common.core.model.entity.SysMenu;
 import com.cddx.system.service.SysMenuService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -75,7 +77,7 @@ public class SysMenuController extends BaseController {
      * 新增菜单
      */
     @PreAuthorize(hasPermi = "system:menu:add", client = UserClientType.MANAGE)
-    // @Log(title = "菜单管理", businessType = BusinessType.INSERT)
+    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysMenu menu) {
         if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
@@ -91,7 +93,7 @@ public class SysMenuController extends BaseController {
      * 修改菜单
      */
     @PreAuthorize(hasPermi = "system:menu:edit", client = UserClientType.MANAGE)
-    // @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
+    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysMenu menu) {
         if (UserConstants.NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
@@ -109,7 +111,7 @@ public class SysMenuController extends BaseController {
      * 删除菜单
      */
     @PreAuthorize(hasPermi = "system:menu:remove", client = UserClientType.MANAGE)
-    // @Log(title = "菜单管理", businessType = BusinessType.DELETE)
+    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{menuId}")
     public AjaxResult remove(@PathVariable("menuId") Long menuId) {
         if (menuService.hasChildByMenuId(menuId)) {

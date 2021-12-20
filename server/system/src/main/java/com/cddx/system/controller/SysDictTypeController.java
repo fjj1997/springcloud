@@ -7,11 +7,11 @@ import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.SysDictTypeService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +38,7 @@ public class SysDictTypeController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:dict:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysDictType dictType) {
@@ -60,7 +60,7 @@ public class SysDictTypeController extends BaseController {
      * 新增字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:add", client = UserClientType.MANAGE)
-    // @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "字典类型", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
@@ -74,7 +74,7 @@ public class SysDictTypeController extends BaseController {
      * 修改字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:edit", client = UserClientType.MANAGE)
-    // @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDictType dict) {
         if (UserConstants.NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
@@ -88,7 +88,7 @@ public class SysDictTypeController extends BaseController {
      * 删除字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:remove", client = UserClientType.MANAGE)
-    // @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictIds}")
     public AjaxResult remove(@PathVariable Long[] dictIds) {
         dictTypeService.deleteDictTypeByIds(dictIds);
@@ -99,7 +99,7 @@ public class SysDictTypeController extends BaseController {
      * 刷新字典缓存
      */
     @PreAuthorize(hasPermi = "system:dict:remove", client = UserClientType.MANAGE)
-    // @Log(title = "字典类型", businessType = BusinessType.CLEAN)
+    @Log(title = "字典类型", businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
     public AjaxResult refreshCache() {
         dictTypeService.resetDictCache();

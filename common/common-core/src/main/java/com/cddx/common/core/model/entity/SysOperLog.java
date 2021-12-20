@@ -1,4 +1,4 @@
-package com.cddx.system.domain.entity;
+package com.cddx.common.core.model.entity;
 
 import com.cddx.common.core.annotation.Excel;
 import com.cddx.common.core.model.base.BaseEntity;
@@ -96,12 +96,6 @@ public class SysOperLog extends BaseEntity {
      */
     @Excel(name = "返回参数")
     private String jsonResult;
-
-    /**
-     * 操作状态（0正常 1异常）
-     */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=异常")
-    private char status;
 
     /**
      * 错误消息

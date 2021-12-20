@@ -20,6 +20,8 @@
         <module>common-swagger</module>
         <module>common-security</module>
         <module>common-datascope</module>
+        <module>common-api</module>
+        <module>common-log</module>
     </modules>
 
 </project>

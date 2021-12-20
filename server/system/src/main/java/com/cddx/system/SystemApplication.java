@@ -1,6 +1,7 @@
 package com.cddx.system;
 
 import com.cddx.common.core.annotation.EnableCustomConfig;
+import com.cddx.common.core.annotation.EnableFeignClients;
 import com.cddx.common.swagger.annotation.EnableCustomSwagger2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author 范劲松
  */
+@EnableFeignClients
 @EnableCustomConfig
 @EnableCustomSwagger2
 @SpringBootApplication

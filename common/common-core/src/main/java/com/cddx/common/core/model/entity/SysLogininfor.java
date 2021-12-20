@@ -1,4 +1,4 @@
-package com.cddx.system.domain.entity;
+package com.cddx.common.core.model.entity;
 
 import com.cddx.common.core.annotation.Excel;
 import com.cddx.common.core.model.base.BaseEntity;

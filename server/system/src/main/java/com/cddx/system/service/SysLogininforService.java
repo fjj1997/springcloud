@@ -1,8 +1,7 @@
 package com.cddx.system.service;
 
-import com.cddx.system.domain.entity.SysLogininfor;
+import com.cddx.common.core.model.entity.SysLogininfor;
 import com.cddx.system.mapper.SysLogininforMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

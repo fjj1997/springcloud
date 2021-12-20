@@ -11,12 +11,12 @@ import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.core.web.response.R;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.*;
-import lombok.extern.java.Log;
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,7 +62,7 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:user:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysUser user) {
@@ -71,7 +71,7 @@ public class SysUserController extends BaseController {
         util.exportExcel(response, list, "用户数据");
     }
 
-    // @Log(title = "用户管理", businessType = BusinessType.IMPORT)
+    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
     @PreAuthorize(hasPermi = "system:user:import", client = UserClientType.MANAGE)
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
@@ -167,7 +167,7 @@ public class SysUserController extends BaseController {
      * 新增用户
      */
     @PreAuthorize(hasPermi = "system:user:add", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysUser user) {
         if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user.getUserName()))) {
@@ -188,7 +188,7 @@ public class SysUserController extends BaseController {
      * 修改用户
      */
     @PreAuthorize(hasPermi = "system:user:edit", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysUser user) {
         userService.checkUserAllowed(user);
@@ -207,7 +207,7 @@ public class SysUserController extends BaseController {
      * 删除用户
      */
     @PreAuthorize(hasPermi = "system:user:remove", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.DELETE)
+    @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{userIds}")
     public AjaxResult remove(@PathVariable Long[] userIds) {
         if (ArrayUtils.contains(userIds, SecurityUtils.getUserId())) {
@@ -220,7 +220,7 @@ public class SysUserController extends BaseController {
      * 重置密码
      */
     @PreAuthorize(hasPermi = "system:user:edit", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping("/resetPwd")
     public AjaxResult resetPwd(@RequestBody SysUser user) {
         userService.checkUserAllowed(user);
@@ -233,7 +233,7 @@ public class SysUserController extends BaseController {
      * 状态修改
      */
     @PreAuthorize(hasPermi = "system:user:edit", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping("/changeStatus")
     public AjaxResult changeStatus(@RequestBody SysUser user) {
         userService.checkUserAllowed(user);
@@ -259,7 +259,7 @@ public class SysUserController extends BaseController {
      * 用户授权角色
      */
     @PreAuthorize(hasPermi = "system:user:edit", client = UserClientType.MANAGE)
-    // @Log(title = "用户管理", businessType = BusinessType.GRANT)
+    @Log(title = "用户管理", businessType = BusinessType.GRANT)
     @PutMapping("/authRole")
     public AjaxResult insertAuthRole(Long userId, Long[] roleIds) {
         userService.insertUserAuth(userId, roleIds);

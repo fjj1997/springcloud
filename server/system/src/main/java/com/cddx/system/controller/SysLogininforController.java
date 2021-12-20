@@ -2,15 +2,16 @@ package com.cddx.system.controller;
 
 
 import com.cddx.common.core.enums.UserClientType;
+import com.cddx.common.core.model.entity.SysLogininfor;
 import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
+import com.cddx.common.security.annotation.InnerAuth;
 import com.cddx.common.security.annotation.PreAuthorize;
-import com.cddx.system.domain.entity.SysLogininfor;
 import com.cddx.system.service.SysLogininforService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,7 +37,7 @@ public class SysLogininforController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "登录日志", businessType = BusinessType.EXPORT)
+    @Log(title = "登录日志", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:logininfor:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysLogininfor logininfor) {
@@ -46,21 +47,21 @@ public class SysLogininforController extends BaseController {
     }
 
     @PreAuthorize(hasPermi = "system:logininfor:remove", client = UserClientType.MANAGE)
-    // @Log(title = "登录日志", businessType = BusinessType.DELETE)
+    @Log(title = "登录日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{infoIds}")
     public AjaxResult remove(@PathVariable Long[] infoIds) {
         return toAjax(logininforService.deleteLogininforByIds(infoIds));
     }
 
     @PreAuthorize(hasPermi = "system:logininfor:remove", client = UserClientType.MANAGE)
-    // @Log(title = "登录日志", businessType = BusinessType.DELETE)
+    @Log(title = "登录日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/clean")
     public AjaxResult clean() {
         logininforService.cleanLogininfor();
         return AjaxResult.success();
     }
 
-    // @InnerAuth
+    @InnerAuth
     @PostMapping
     public AjaxResult add(@RequestBody SysLogininfor logininfor) {
         return toAjax(logininforService.insertLogininfor(logininfor));

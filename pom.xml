@@ -363,6 +363,20 @@
                 <version>${this-project.version}</version>
             </dependency>
 
+            <!-- 内部调用api -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>common-api</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
+            <!-- 内部调用api -->
+            <dependency>
+                <groupId>com.cddx</groupId>
+                <artifactId>common-log</artifactId>
+                <version>${this-project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

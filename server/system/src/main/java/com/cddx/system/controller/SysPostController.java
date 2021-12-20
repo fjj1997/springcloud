@@ -6,12 +6,12 @@ import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.domain.entity.SysPost;
 import com.cddx.system.service.SysPostService;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +41,7 @@ public class SysPostController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:post:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysPost post) {
@@ -62,7 +62,7 @@ public class SysPostController extends BaseController {
     /**
      * 新增岗位
      */
-    // @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
     @PreAuthorize(hasPermi = "system:post:add", client = UserClientType.MANAGE)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysPost post) {
@@ -79,7 +79,7 @@ public class SysPostController extends BaseController {
      * 修改岗位
      */
     @PreAuthorize(hasPermi = "system:post:edit", client = UserClientType.MANAGE)
-    // @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
@@ -95,7 +95,7 @@ public class SysPostController extends BaseController {
      * 删除岗位
      */
     @PreAuthorize(hasPermi = "system:post:remove", client = UserClientType.MANAGE)
-    // @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
     public AjaxResult remove(@PathVariable Long[] postIds) {
         return toAjax(postService.deletePostByIds(postIds));

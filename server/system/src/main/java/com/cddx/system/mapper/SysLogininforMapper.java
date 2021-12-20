@@ -1,7 +1,7 @@
 package com.cddx.system.mapper;
 
 
-import com.cddx.system.domain.entity.SysLogininfor;
+import com.cddx.common.core.model.entity.SysLogininfor;
 
 import java.util.List;
 

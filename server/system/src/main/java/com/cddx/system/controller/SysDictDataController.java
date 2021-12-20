@@ -8,6 +8,8 @@ import com.cddx.common.core.utils.poi.ExcelUtil;
 import com.cddx.common.core.web.controller.BaseController;
 import com.cddx.common.core.web.page.TableDataInfo;
 import com.cddx.common.core.web.response.AjaxResult;
+import com.cddx.common.log.annotation.Log;
+import com.cddx.common.log.enums.BusinessType;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.SysDictDataService;
@@ -42,7 +44,7 @@ public class SysDictDataController extends BaseController {
         return getDataTable(list);
     }
 
-    // @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
     @PreAuthorize(hasPermi = "system:dict:export", client = UserClientType.MANAGE)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysDictData dictData) {
@@ -76,7 +78,7 @@ public class SysDictDataController extends BaseController {
      * 新增字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:add", client = UserClientType.MANAGE)
-    // @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "字典数据", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDictData dict) {
         dict.setCreateBy(SecurityUtils.getUserId());
@@ -87,7 +89,7 @@ public class SysDictDataController extends BaseController {
      * 修改保存字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:edit", client = UserClientType.MANAGE)
-    // @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDictData dict) {
         dict.setUpdateBy(SecurityUtils.getUserId());
@@ -98,7 +100,7 @@ public class SysDictDataController extends BaseController {
      * 删除字典类型
      */
     @PreAuthorize(hasPermi = "system:dict:remove", client = UserClientType.MANAGE)
-    // @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictCodes}")
     public AjaxResult remove(@PathVariable Long[] dictCodes) {
         dictDataService.deleteDictDataByIds(dictCodes);

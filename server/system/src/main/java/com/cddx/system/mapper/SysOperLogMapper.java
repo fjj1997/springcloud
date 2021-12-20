@@ -1,7 +1,7 @@
 package com.cddx.system.mapper;
 
 
-import com.cddx.system.domain.entity.SysOperLog;
+import com.cddx.common.core.model.entity.SysOperLog;
 
 import java.util.List;
 
