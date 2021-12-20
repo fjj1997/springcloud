@@ -1,6 +1,8 @@
 package com.cddx.gateway.config;
 
 import com.cddx.gateway.handler.HystrixFallbackHandler;
+import com.cddx.gateway.handler.ValidateCodeHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -17,6 +19,8 @@ import javax.annotation.Resource;
  */
 @Configuration
 public class RouterFunctionConfiguration {
+    @Resource
+    private ValidateCodeHandler validateCodeHandler;
 
     @Resource
     private HystrixFallbackHandler hystrixFallbackHandler;
@@ -26,6 +30,8 @@ public class RouterFunctionConfiguration {
     public RouterFunction routerFunction() {
         return RouterFunctions
                 .route(RequestPredicates.path("/fallback").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
-                        hystrixFallbackHandler);
+                        hystrixFallbackHandler).andRoute(
+                        RequestPredicates.GET("/code").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
+                        validateCodeHandler);
     }
 }
