@@ -9,13 +9,14 @@
 com.cddx
 ├── gateway         // 网关模块 [8080]
 ├── common          // 通用模块
+│   ├── common-api                    // 公共feign接口
 │   ├── common-core                   // 核心模块
+│   ├── common-datascope              // 数据权限
 │   ├── common-datasource             // 多数据源
+│   ├── common-log                    // 日志服务
 │   ├── common-redis                  // 缓存服务
 │   ├── common-security               // 安全模块
 │   └── common-swagger                // 系统接口
-├── models          // 实体模块
-│   └── common-base                   // 基础实体
 ├── server          // 业务服务模块
 │   ├── auth                          // 认证中心    [9200]
 │   ├── file                          // 文件服务    [9300]

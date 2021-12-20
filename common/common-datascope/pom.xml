@@ -11,6 +11,10 @@
 
     <artifactId>common-datascope</artifactId>
 
+    <description>
+        数据权限
+    </description>
+
     <dependencies>
         <dependency>
             <groupId>com.cddx</groupId>
