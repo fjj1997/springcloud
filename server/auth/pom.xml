@@ -69,6 +69,12 @@
             <groupId>com.cddx</groupId>
             <artifactId>common-swagger</artifactId>
         </dependency>
+
+        <!-- 远程api -->
+        <dependency>
+            <groupId>com.cddx</groupId>
+            <artifactId>common-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

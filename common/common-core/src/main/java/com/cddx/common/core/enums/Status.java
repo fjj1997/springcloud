@@ -25,4 +25,8 @@ public enum Status {
     public boolean eq(char status) {
         return this.status == status;
     }
+
+    public char getStatus() {
+        return status;
+    }
 }
