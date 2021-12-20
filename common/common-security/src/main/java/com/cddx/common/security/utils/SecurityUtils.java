@@ -6,6 +6,7 @@ import com.cddx.common.core.context.SecurityContextHolder;
 import com.cddx.common.core.utils.ServletUtils;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.model.base.LoginUser;
+import com.cddx.common.core.utils.text.Convert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +21,21 @@ public class SecurityUtils {
      * 获取用户ID
      */
     public static Long getUserId() {
-        return SecurityContextHolder.getUserId();
+//        return SecurityContextHolder.getUserId();
+        return Convert.toLong(ServletUtils.getRequest().getHeader(SecurityConstants.DETAILS_USER_ID));
     }
 
     /**
      * 获取用户名称
      */
     public static String getUsername() {
-        return SecurityContextHolder.getUserName();
+//        return SecurityContextHolder.getUserName();
+        String username = ServletUtils.getRequest().getHeader(SecurityConstants.DETAILS_USERNAME);
+        try {
+            return ServletUtils.urlDecode(username);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

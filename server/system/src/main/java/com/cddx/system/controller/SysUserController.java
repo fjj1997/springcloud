@@ -13,9 +13,11 @@ import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.core.web.response.R;
 import com.cddx.common.log.annotation.Log;
 import com.cddx.common.log.enums.BusinessType;
+import com.cddx.common.security.annotation.InnerAuth;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.utils.SecurityUtils;
 import com.cddx.system.service.*;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,7 @@ import java.util.stream.Collectors;
  *
  * @author 范劲松
  */
+@Log4j2
 @RestController
 @RequestMapping("/user")
 public class SysUserController extends BaseController {
@@ -91,7 +94,7 @@ public class SysUserController extends BaseController {
     /**
      * 获取当前用户信息
      */
-    // @InnerAuth
+    @InnerAuth
     @GetMapping("/info/{username}")
     public R<LoginUser> info(@PathVariable("username") String username) {
         SysUser sysUser = userService.selectUserByUserName(username);
@@ -112,7 +115,7 @@ public class SysUserController extends BaseController {
     /**
      * 注册用户信息
      */
-    // @InnerAuth
+    @InnerAuth
     @PostMapping("/register")
     public R<Boolean> register(@RequestBody SysUser sysUser) {
         String username = sysUser.getUserName();
@@ -133,6 +136,7 @@ public class SysUserController extends BaseController {
     @GetMapping("getInfo")
     public AjaxResult getInfo() {
         Long userId = SecurityUtils.getUserId();
+        log.info("user id: {}", userId);
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(userId);
         // 权限集合

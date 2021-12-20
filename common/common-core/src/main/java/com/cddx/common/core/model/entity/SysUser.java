@@ -95,7 +95,7 @@ public class SysUser extends BaseEntity {
      * 最后登录时间
      */
     @Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
-    private Date loginDate;
+    private Long loginDate;
 
     /**
      * 部门对象

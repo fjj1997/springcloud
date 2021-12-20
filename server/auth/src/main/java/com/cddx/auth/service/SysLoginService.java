@@ -135,6 +135,8 @@ public class SysLoginService {
         } else if (Constants.LOGIN_FAIL.equals(status)) {
             logininfor.setStatus(Status.DISABLED.getStatus());
         }
-        remoteLogService.saveLogininfor(logininfor, SecurityConstants.INNER);
+        try {
+            remoteLogService.saveLogininfor(logininfor, SecurityConstants.INNER);
+        } catch (Exception ignore) {}
     }
 }
