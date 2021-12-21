@@ -7,6 +7,8 @@ import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.security.config.ActuatorConfig;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -19,6 +21,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.stream.Collectors;
 
 /**
  * 针对于SpringCloud Actuator的检测白名单，只有白名单ip才可访问
@@ -34,9 +37,14 @@ public class ActuatorFilter implements Filter {
     @Resource
     private ActuatorConfig config;
 
+    @Resource
+    private DiscoveryClient discoveryClient;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info("actuator white ips: {}", config.getIp());
+        log.info("client service: {}", discoveryClient.getInstances("monitor")
+                .stream().map(ServiceInstance::getHost).collect(Collectors.toSet()));
         Filter.super.init(filterConfig);
     }
 
