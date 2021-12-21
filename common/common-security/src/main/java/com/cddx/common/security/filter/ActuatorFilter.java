@@ -3,6 +3,7 @@ package com.cddx.common.security.filter;
 import com.alibaba.fastjson.JSONObject;
 import com.cddx.common.core.constant.Constants;
 import com.cddx.common.core.enums.ResultEnum;
+import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.security.config.ActuatorConfig;
@@ -21,6 +22,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -34,6 +38,8 @@ import java.util.stream.Collectors;
 @WebFilter(filterName = "actuatorFilter", urlPatterns = {"/actuator/*"})
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 public class ActuatorFilter implements Filter {
+    private static final List<String> DEFAULT_WHITE = new ArrayList<>(Arrays.asList("/actuator/**"));
+
     @Resource
     private ActuatorConfig config;
 
@@ -52,12 +58,17 @@ public class ActuatorFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
+        // 检查地址外成员放行
+        if (!StringUtils.matches(request.getRequestURI(), DEFAULT_WHITE)) {
+            // 放行
+            chain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         PrintWriter writer = null;
         try {
             // 检测是否白名单ip
             if (isMatchWhiteIp(IpUtils.getIpAddr(request))) {
-                // 放行
-//                log.info("url: {}, ip: {} 通过", request.getRequestURI(), IpUtils.getIpAddr(request));
                 chain.doFilter(request, servletResponse);
                 return;
             }
