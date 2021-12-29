@@ -1,12 +1,12 @@
 package com.cddx.common.datascope.aspect;
 
+import com.cddx.common.core.model.base.BaseEntity;
+import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.core.model.entity.SysRole;
 import com.cddx.common.core.model.entity.SysUser;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.datascope.annotation.DataScope;
 import com.cddx.common.security.utils.SecurityUtils;
-import com.cddx.common.core.model.base.BaseEntity;
-import com.cddx.common.core.model.base.LoginUser;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

@@ -1,9 +1,9 @@
 package com.cddx.common.core.model.entity;
 
-import com.cddx.common.core.xss.Xss;
 import com.cddx.common.core.annotation.Excel;
 import com.cddx.common.core.annotation.Excels;
 import com.cddx.common.core.model.base.BaseEntity;
+import com.cddx.common.core.xss.Xss;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -11,7 +11,6 @@ import lombok.ToString;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.List;
 
 /**

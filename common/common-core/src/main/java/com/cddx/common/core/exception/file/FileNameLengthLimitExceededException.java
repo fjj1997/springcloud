@@ -1,7 +1,5 @@
 package com.cddx.common.core.exception.file;
 
-import com.cddx.common.core.exception.file.FileException;
-
 /**
  * 文件名称超长限制异常类
  *

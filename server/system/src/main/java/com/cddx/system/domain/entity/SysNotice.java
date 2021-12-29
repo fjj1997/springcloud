@@ -1,7 +1,7 @@
 package com.cddx.system.domain.entity;
 
-import com.cddx.common.core.xss.Xss;
 import com.cddx.common.core.model.base.BaseEntity;
+import com.cddx.common.core.xss.Xss;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

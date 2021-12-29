@@ -8,7 +8,6 @@ import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.security.utils.DictUtils;
 import com.cddx.system.mapper.SysDictDataMapper;
 import com.cddx.system.mapper.SysDictTypeMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

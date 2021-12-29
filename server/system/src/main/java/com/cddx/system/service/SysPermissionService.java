@@ -1,7 +1,6 @@
 package com.cddx.system.service;
 
 import com.cddx.common.core.model.entity.SysUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

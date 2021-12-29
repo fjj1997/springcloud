@@ -9,7 +9,6 @@ import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.common.redis.service.RedisService;
 import com.cddx.gateway.config.properties.CaptchaProperties;
 import com.google.code.kaptcha.Producer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FastByteArrayOutputStream;
 

@@ -2,14 +2,14 @@ package com.cddx.system.service;
 
 import com.cddx.common.core.constant.UserConstants;
 import com.cddx.common.core.exception.ServiceException;
+import com.cddx.common.core.model.entity.SysDept;
+import com.cddx.common.core.model.entity.SysRole;
+import com.cddx.common.core.model.entity.SysUser;
 import com.cddx.common.core.utils.SpringUtils;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.text.Convert;
 import com.cddx.common.datascope.annotation.DataScope;
 import com.cddx.common.security.utils.SecurityUtils;
-import com.cddx.common.core.model.entity.SysDept;
-import com.cddx.common.core.model.entity.SysRole;
-import com.cddx.common.core.model.entity.SysUser;
 import com.cddx.system.domain.vo.TreeSelect;
 import com.cddx.system.mapper.SysDeptMapper;
 import com.cddx.system.mapper.SysRoleMapper;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 

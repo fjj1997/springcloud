@@ -1,7 +1,5 @@
 package com.cddx.common.core.exception.file;
 
-import com.cddx.common.core.exception.file.FileException;
-
 /**
  * 文件名大小限制异常类
  *

@@ -2,16 +2,14 @@ package com.cddx.common.core.utils.menu;
 
 import com.cddx.common.core.constant.Constants;
 import com.cddx.common.core.constant.UserConstants;
-import com.cddx.common.core.enums.MenuType;
-import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.model.entity.SysMenu;
 import com.cddx.common.core.model.vo.menu.MetaVo;
 import com.cddx.common.core.model.vo.menu.RouterVo;
+import com.cddx.common.core.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 菜单工具

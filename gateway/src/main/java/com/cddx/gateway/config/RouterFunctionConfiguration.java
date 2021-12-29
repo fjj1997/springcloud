@@ -2,7 +2,6 @@ package com.cddx.gateway.config;
 
 import com.cddx.gateway.handler.HystrixFallbackHandler;
 import com.cddx.gateway.handler.ValidateCodeHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

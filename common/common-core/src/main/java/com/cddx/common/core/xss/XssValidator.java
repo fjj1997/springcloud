@@ -4,7 +4,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.cddx.common.core.xss.Xss;
 
 /**
  * 自定义xss校验注解实现

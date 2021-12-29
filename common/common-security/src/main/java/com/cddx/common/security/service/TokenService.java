@@ -2,13 +2,13 @@ package com.cddx.common.security.service;
 
 import com.cddx.common.core.constant.CacheConstants;
 import com.cddx.common.core.constant.SecurityConstants;
+import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.core.utils.IdUtils;
 import com.cddx.common.core.utils.JwtUtils;
 import com.cddx.common.core.utils.ServletUtils;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.ip.IpUtils;
 import com.cddx.common.redis.service.RedisService;
-import com.cddx.common.core.model.base.LoginUser;
 import com.cddx.common.security.utils.SecurityUtils;
 import org.springframework.stereotype.Component;
 

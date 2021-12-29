@@ -1,15 +1,12 @@
 package com.cddx.system.service;
 
-import com.cddx.common.core.constant.Constants;
 import com.cddx.common.core.constant.UserConstants;
+import com.cddx.common.core.model.entity.SysMenu;
 import com.cddx.common.core.model.entity.SysRole;
 import com.cddx.common.core.model.entity.SysUser;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.menu.MenuUtils;
 import com.cddx.common.security.utils.SecurityUtils;
-import com.cddx.common.core.model.entity.SysMenu;
-import com.cddx.system.domain.vo.MetaVo;
-import com.cddx.system.domain.vo.RouterVo;
 import com.cddx.system.domain.vo.TreeSelect;
 import com.cddx.system.mapper.SysMenuMapper;
 import com.cddx.system.mapper.SysRoleMapper;
@@ -17,7 +14,10 @@ import com.cddx.system.mapper.SysRoleMenuMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

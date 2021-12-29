@@ -15,7 +15,6 @@ import com.cddx.system.mapper.SysRoleDeptMapper;
 import com.cddx.system.mapper.SysRoleMapper;
 import com.cddx.system.mapper.SysRoleMenuMapper;
 import com.cddx.system.mapper.SysUserRoleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

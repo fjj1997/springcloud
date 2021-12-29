@@ -1,12 +1,12 @@
 package com.cddx.common.security.aspect;
 
 import com.cddx.common.core.enums.ResultEnum;
+import com.cddx.common.core.enums.UserClientType;
 import com.cddx.common.core.exception.CustomException;
-import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.model.base.LoginUser;
+import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.security.annotation.PreAuthorize;
 import com.cddx.common.security.service.TokenService;
-import com.cddx.common.core.enums.UserClientType;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

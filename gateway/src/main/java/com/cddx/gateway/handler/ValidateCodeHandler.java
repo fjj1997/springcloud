@@ -3,7 +3,6 @@ package com.cddx.gateway.handler;
 import com.cddx.common.core.exception.CaptchaException;
 import com.cddx.common.core.web.response.AjaxResult;
 import com.cddx.gateway.service.ValidateCodeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
