@@ -97,8 +97,7 @@ public class TokenService {
                 user = redisService.getCacheObject(getTokenKey(userkey));
                 return user;
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) { }
         return user;
     }
 

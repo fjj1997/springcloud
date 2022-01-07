@@ -2,6 +2,7 @@ package com.cddx.common.security.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cddx.common.core.constant.Constants;
+import com.cddx.common.core.constant.ServiceNameConstants;
 import com.cddx.common.core.enums.ResultEnum;
 import com.cddx.common.core.utils.StringUtils;
 import com.cddx.common.core.utils.ip.IpUtils;
@@ -25,6 +26,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -48,9 +50,6 @@ public class ActuatorFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.info("actuator white ips: {}", config.getIp());
-        log.info("client service: {}", discoveryClient.getInstances("monitor")
-                .stream().map(ServiceInstance::getHost).collect(Collectors.toSet()));
         Filter.super.init(filterConfig);
     }
 
@@ -97,6 +96,13 @@ public class ActuatorFilter implements Filter {
      * @return 判断结果
      */
     private boolean isMatchWhiteIp(String ip) {
-        return config.getIp().stream().anyMatch(ip::startsWith);
+        // 获取注册中心的注册ip
+        Set<String> monitor = discoveryClient.getInstances(ServiceNameConstants.VISUAL_MONITOR_SERVICE)
+                .stream().map(ServiceInstance::getHost)
+                .collect(Collectors.toSet());
+        // 加入自己配置的白名单
+        monitor.addAll(config.getIp());
+        // 匹配结果
+        return monitor.stream().anyMatch(ip::startsWith);
     }
 }
