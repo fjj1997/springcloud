@@ -23,6 +23,6 @@ public class AsyncLogService {
      */
     @Async
     public void saveSysLog(SysOperLog sysOperLog) {
-        remoteLogService.saveLog(sysOperLog, SecurityConstants.INNER);
+        remoteLogService.saveLog(sysOperLog);
     }
 }
