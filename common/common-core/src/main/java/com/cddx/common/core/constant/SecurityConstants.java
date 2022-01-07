@@ -27,6 +27,16 @@ public class SecurityConstants {
     public static final String FROM_SOURCE = "from-source";
 
     /**
+     * 请求来源服务id
+     */
+    public static final String SERVICE_ID = "x-service-id";
+
+    /**
+     * 来源服务的ip
+     */
+    public static final String SERVICE_IP = "x-service-client";
+
+    /**
      * 内部请求
      */
     public static final String INNER = "inner";

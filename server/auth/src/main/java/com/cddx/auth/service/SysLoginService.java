@@ -54,7 +54,7 @@ public class SysLoginService {
             throw new ServiceException("用户名不在指定范围");
         }
         // 查询用户信息
-        R<LoginUser> userResult = remoteUserService.getUserInfo(username, SecurityConstants.INNER);
+        R<LoginUser> userResult = remoteUserService.getUserInfo(username);
 
         if (R.FAIL.getCode() == userResult.getCode()) {
             throw new ServiceException(userResult.getMsg());
@@ -108,7 +108,7 @@ public class SysLoginService {
         sysUser.setUserName(username);
         sysUser.setNickName(username);
         sysUser.setPassword(SecurityUtils.encryptPassword(password));
-        R<?> registerResult = remoteUserService.registerUserInfo(sysUser, SecurityConstants.INNER);
+        R<?> registerResult = remoteUserService.registerUserInfo(sysUser);
 
         if (R.FAIL.getCode() == registerResult.getCode()) {
             throw new ServiceException(registerResult.getMsg());
@@ -136,7 +136,7 @@ public class SysLoginService {
             logininfor.setStatus(Status.DISABLED.getStatus());
         }
         try {
-            remoteLogService.saveLogininfor(logininfor, SecurityConstants.INNER);
+            remoteLogService.saveLogininfor(logininfor);
         } catch (Exception ignore) {}
     }
 }

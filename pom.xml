@@ -20,7 +20,7 @@
                 <nacos-password>nacos</nacos-password>
                 <nacos-discovery-addr>47.108.221.223:7021</nacos-discovery-addr>
                 <nacos-discovery-namespace>bee031af-8026-4f09-a385-4c2d19d42bff</nacos-discovery-namespace>
-                <nacos-discovery-group>FANJINSONG_GROUP</nacos-discovery-group>
+                <nacos-discovery-group>DEFAULT_GROUP</nacos-discovery-group>
                 <nacos-config-addr>47.108.221.223:7021</nacos-config-addr>
                 <nacos-config-namespace>bee031af-8026-4f09-a385-4c2d19d42bff</nacos-config-namespace>
                 <nacos-config-group>DEFAULT_GROUP</nacos-config-group>
